@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className={Style.navbar_container_left}>
                     <div className={Style.logo}>
                         <Image
-                            src={""}
+                            src={images.logo}
                             alt="Nft-Marketplace"
                             width={100}
                             height={100}
@@ -42,7 +42,7 @@ const Navbar = () => {
                         <div className={Style.navbar_container_left_box_input_box}>
                             <input type="text" placeholder='Search Nft' />
                             <BsSearch
-                                className={Style.search_con}
+                                className={Style.search_icon}
                                 onClick={() => { }}
                             />
 
@@ -57,7 +57,7 @@ const Navbar = () => {
                     <div className={Style.navbar_container_right_discover}>
                         <p onClick={(e) => { openMenu(e) }} >Discover</p>
                         {
-                            option === 'Discover' && <div className={Style.navbar_right_discover_box}>
+                            option === 'Discover' && <div className={Style.navbar_container_right_discover_box}>
                                 <Discover />
                             </div>
                         }
@@ -67,7 +67,7 @@ const Navbar = () => {
                     <div className={Style.navbar_container_right_help}>
                         <p onClick={(e) => { openMenu(e) }} >Help Center</p>
                         {
-                            option === 'Help Center' && <div className={Style.navbar_right_help_box}>
+                            option === 'Help Center' && <div className={Style.navbar_container_right_help_box}>
                                 <HelpCenter />
                             </div>
                         }
@@ -121,7 +121,7 @@ const Navbar = () => {
             </div>
 
             {
-                openSidebar && <div className={Style.SideBar}>
+                openSidebar && <div className={Style.sideBar}>
                     <Sidebar setOpenSideMenu={setOpenSidebar} />
                 </div>
             }
