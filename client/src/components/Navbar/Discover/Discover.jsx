@@ -43,7 +43,7 @@ const Discover = () => {
         <div>
             {
                 discover.map((item, index) => (
-                    <div key={index + 1}>
+                    <div key={index + 1} className={Styles.discover}>
                         <Link href={{ pathname: `${item.link}` }}>
                             {item.name}
                         </Link>
