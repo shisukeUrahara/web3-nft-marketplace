@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const openMenu = (e) => {
         let selectedOption = e.target.innerText;
-        console.log("**@ openMenu called with option , ", option);
+        console.log("**@ openMenu called with option , ", selectedOption);
         if (option === selectedOption) {
             setOption('');
         }
@@ -96,7 +96,7 @@ const Navbar = () => {
                                 alt="Profile"
                                 width={40}
                                 height={40}
-                                onClick={(e) => openMenu(e)}
+                                onClick={(e) => option === 'Profile' ? setOption('') : setOption('Profile')}
                                 className={Style.navbar_container_right_profile}
                             />
 
