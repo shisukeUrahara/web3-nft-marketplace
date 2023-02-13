@@ -121,8 +121,8 @@ const Navbar = () => {
             </div>
 
             {
-                option === 'Sidebar' && <div className={Style.SideBar}>
-                    <Sidebar setOpenSideMenu={option === 'Sidebar'} />
+                openSidebar && <div className={Style.SideBar}>
+                    <Sidebar setOpenSideMenu={setOpenSidebar} />
                 </div>
             }
 
