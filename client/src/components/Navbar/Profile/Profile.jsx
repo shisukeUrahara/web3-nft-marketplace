@@ -16,7 +16,7 @@ const Profile = () => {
                     alt="user profile"
                     width={50}
                     height={50}
-                    className={Style.profile_account}
+                    className={Style.profile_account_img}
                 />
 
                 <div className={Style.profile_account_info}>
