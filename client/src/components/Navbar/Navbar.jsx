@@ -75,7 +75,7 @@ const Navbar = () => {
 
                     {/* Notifications section */}
                     <div className={Style.navbar_container_right_notifications}>
-                        <MdNotifications onClick={() => option == 'Notifications' ? setOption('') : setOption('Notifications')} />
+                        <MdNotifications className={Style.notify} onClick={() => option == 'Notifications' ? setOption('') : setOption('Notifications')} />
                         {
                             option === 'Notifications' && <div className={Style.navbar_right_notifications_box}>
                                 <Notifications />
