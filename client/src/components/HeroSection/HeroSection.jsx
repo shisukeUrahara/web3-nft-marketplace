@@ -14,7 +14,7 @@ const HeroSection = () => {
                         Discover the most outstanding NTFs in all topics of life. Creative
                         your NTFs and sell them
                     </p>
-                    <Button btnText='Start your search' />
+                    <Button btnText='Start your search' handleClick={() => { }} />
                 </div>
 
                 <div className={Style.heroSection_box_right}>
