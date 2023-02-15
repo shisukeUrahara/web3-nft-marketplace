@@ -41,7 +41,6 @@ const Subscribe = () => {
                         width={800}
                         height={600}
                     />
-
                 </div>
 
             </div>
