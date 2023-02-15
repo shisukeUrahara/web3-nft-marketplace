@@ -15,9 +15,9 @@ const BigNftSlider = () => {
         {
             title: "Hello NFT",
             id: 1,
-            name: "Daulat Hussain",
+            name: "Shisuke Urahara",
             collection: "GYm",
-            price: "00664 ETH",
+            price: "0.00664 ETH",
             like: 243,
             image: images.user1,
             nftImage: images.nft_image_1,
@@ -33,7 +33,7 @@ const BigNftSlider = () => {
             id: 2,
             name: "Shoaib Hussain",
             collection: "Home",
-            price: "0000004 ETH",
+            price: "0.0000004 ETH",
             like: 243,
             image: images.user2,
             nftImage: images.nft_image_2,
@@ -49,7 +49,7 @@ const BigNftSlider = () => {
             id: 3,
             name: "Raayan Hussain",
             collection: "GYm",
-            price: "0000064 ETH",
+            price: "0.0000064 ETH",
             like: 243,
             image: images.user3,
             nftImage: images.nft_image_3,
@@ -68,7 +68,7 @@ const BigNftSlider = () => {
             price: "4664 ETH",
             like: 243,
             image: images.user4,
-            nftImage: images.nft_image_1,
+            nftImage: images.nft_image_2,
             time: {
                 days: 87,
                 hours: 29,
@@ -83,12 +83,18 @@ const BigNftSlider = () => {
         if (idNumber + 1 < sliderData.length) {
             setIdNumber(idNumber + 1);
         }
+        else {
+            setIdNumber(1)
+        }
     }, [idNumber, sliderData.length]);
 
     //-------DEC
     const dec = useCallback(() => {
         if (idNumber > 0) {
             setIdNumber(idNumber - 1);
+        }
+        else {
+            setIdNumber(sliderData.length - 1)
         }
     }, [idNumber]);
 
@@ -186,7 +192,7 @@ const BigNftSlider = () => {
 
                 <div className={Style.BigNftSlider_box_right}>
                     <div className={Style.BigNftSlider_box_right_box}>
-                        <Image src={sliderData[idNumber].nftImage} alt="Nft Image" />
+                        <Image className={Style.bigNftSlider_box_right_box_img} src={sliderData[idNumber].nftImage} alt="Nft Image" />
 
                         <div className={Style.BigNftSlider_box_right_box_like}>
                             <AiFillHeart />
