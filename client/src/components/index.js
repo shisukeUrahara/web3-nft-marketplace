@@ -4,6 +4,7 @@ import Navbar from './Navbar/Navbar';
 import HeroSection from './HeroSection/HeroSection';
 import Service from './Service/Service';
 import BigNftSlider from './BigNftSlider/BigNftSlider';
+import Subscribe from './Subscribe/Subscribe';
 
 export {
     Button,
@@ -11,5 +12,6 @@ export {
     Navbar,
     HeroSection,
     Service,
-    BigNftSlider
+    BigNftSlider,
+    Subscribe
 }
