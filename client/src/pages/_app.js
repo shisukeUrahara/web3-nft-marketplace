@@ -1,10 +1,11 @@
 import '../styles/globals.css';
-import { Navbar } from "../components";
+import { Navbar ,Footer} from "../components";
 
 const App=({ Component, pageProps })=> {
   return <div>
     <Navbar />
     <Component {...pageProps} />
+    <Footer />
   </div>
 }
 
