@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Style from './Service.module.css';
 import images from '../../img'
 
@@ -8,7 +8,8 @@ const Service = () => {
         <div className={Style.service}>
             <div className={Style.service_box}>
                 <div className={Style.service_box_item}>
-                    <Image src={images.service1} alt="Filter & Discover" width={100} height={100} />
+                    <Image src={images.service1} alt="Filter & Discover" width={100} height={100} objectFit="cover"
+                    />
                     <p className={Style.service_box_item_step}>
                         <span>Step 1</span>
                     </p>
@@ -20,7 +21,8 @@ const Service = () => {
                 </div>
 
                 <div className={Style.service_box_item}>
-                    <Image src={images.service2} alt="Filter & Discover" width={100} height={100} />
+                    <Image src={images.service2} alt="Filter & Discover" width={100} height={100} objectFit="cover"
+                    />
                     <p className={Style.service_box_item_step}>
                         <span>Step 2</span>
                     </p>
@@ -32,7 +34,8 @@ const Service = () => {
                 </div>
 
                 <div className={Style.service_box_item}>
-                    <Image src={images.service3} alt="Connect Wallet" width={100} height={100} />
+                    <Image src={images.service3} alt="Connect Wallet" width={100} height={100} objectFit="cover"
+                    />
                     <p className={Style.service_box_item_step}>
                         <span>Step 3</span>
                     </p>
@@ -44,7 +47,8 @@ const Service = () => {
                 </div>
 
                 <div className={Style.service_box_item}>
-                    <Image src={images.service4} alt="Filter & Discover" width={100} height={100} />
+                    <Image src={images.service4} alt="Filter & Discover" width={100} height={100} objectFit="cover"
+                    />
                     <p className={Style.service_box_item_step}>
                         <span>Step 4</span>
                     </p>

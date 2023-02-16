@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Style from './Notifications.module.css';
 import images from '../../../img';
 
@@ -15,6 +15,7 @@ const Notifications = () => {
                         width={50}
                         height={50}
                         className={Style.notification_box_img}
+                        objectFit="cover"
                     />
 
                 </div>

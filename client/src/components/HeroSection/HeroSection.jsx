@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Style from './HeroSection.module.css';
 import { Button } from '..';
 import images from '../../img'
@@ -18,7 +18,8 @@ const HeroSection = () => {
                 </div>
 
                 <div className={Style.heroSection_box_right}>
-                    <Image src={images.hero} alt="Hero Section" height={600} width={600} />
+                    <Image src={images.hero} alt="Hero Section" height={600} width={600} objectFit="cover"
+                    />
 
                 </div>
 

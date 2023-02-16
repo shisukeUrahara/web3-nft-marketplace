@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { MdVerified } from 'react-icons/md';
 import Style from './DayComponents.module.css';
 import images from '../../../img';
@@ -15,6 +15,8 @@ const DayComponents = () => {
                         alt="profile background"
                         width={500}
                         height={300}
+                        objectFit="cover"
+
                     />
 
                 </div>
@@ -26,6 +28,7 @@ const DayComponents = () => {
                         width={200}
                         height={200}
                         className={Style.dayComponent_box_img_1}
+                        objectFit="cover"
                     />
                     <Image
                         src={images.creatorbackground2}
@@ -33,6 +36,7 @@ const DayComponents = () => {
                         width={200}
                         height={200}
                         className={Style.dayComponent_box_img_2}
+                        objectFit="cover"
                     />
 
                     <Image
@@ -41,6 +45,7 @@ const DayComponents = () => {
                         width={200}
                         height={200}
                         className={Style.dayComponent_box_img_3}
+                        objectFit="cover"
                     />
 
                 </div>
@@ -55,7 +60,7 @@ const DayComponents = () => {
                                 width={30}
                                 height={30}
                                 className={Style.dayComponent_box_title_info_profile_img}
-                                objectFit="covers"
+                                objectFit="cover"
                             />
                             <p>Shisuke Urahara <small><MdVerified /></small></p>
                         </div>

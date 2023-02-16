@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { GrClose } from 'react-icons/gr';
 import {
@@ -91,6 +91,7 @@ const Sidebar = ({ setOpenSideMenu }) => {
                     alt="logo"
                     width={150}
                     height={150}
+                    objectFit="cover"
                 />
 
                 <p>

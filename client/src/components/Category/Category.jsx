@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { BsCircleFill } from 'react-icons/bs';
 import Style from './Category.module.css';
 import images from '../../img'
@@ -65,6 +65,7 @@ const Category = () => {
                                 className={Style.category_box_img}
                                 width={350}
                                 height={150}
+                                objectFit="cover"
                             />
 
                             <div className={Style.category_box_title}>

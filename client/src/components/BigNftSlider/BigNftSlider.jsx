@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { AiFillFire, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import { TbArrowBigLeftLines, TbArrowBigRightLine, TbArrowBigRightLines } from "react-icons/tb";
@@ -111,6 +111,7 @@ const BigNftSlider = () => {
                                 alt="Creator Profile"
                                 width={50}
                                 height={50}
+                                objectFit="cover"
                             />
 
                             <div className={Style.BigNftSlider_box_left_creator_profile_info}>
@@ -192,7 +193,8 @@ const BigNftSlider = () => {
 
                 <div className={Style.BigNftSlider_box_right}>
                     <div className={Style.BigNftSlider_box_right_box}>
-                        <Image className={Style.bigNftSlider_box_right_box_img} src={sliderData[idNumber].nftImage} alt="Nft Image" />
+                        <Image className={Style.bigNftSlider_box_right_box_img} src={sliderData[idNumber].nftImage} alt="Nft Image" objectFit="cover"
+                        />
 
                         <div className={Style.BigNftSlider_box_right_box_like}>
                             <AiFillHeart />

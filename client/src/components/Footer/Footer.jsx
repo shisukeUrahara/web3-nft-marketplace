@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import {
     TiSocialFacebook,
     TiSocialLinkedin,
@@ -25,6 +25,7 @@ const Footer = () => {
                         alt="Footer logo"
                         height={100}
                         width={100}
+                        objectFit="cover"
                     />
                     <p>
                         The world’s first and largest digital marketplace for crypto

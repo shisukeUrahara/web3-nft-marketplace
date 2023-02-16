@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { BsImages } from 'react-icons/bs';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 import Style from './NFTCard.module.css';
 import images from '../../img'
@@ -23,6 +23,7 @@ const NFTCard = () => {
                                 height={600}
                                 width={600}
                                 className={Style.NFTCard_box_img_img}
+                                objectFit="cover"
                             />
                         </div>
 

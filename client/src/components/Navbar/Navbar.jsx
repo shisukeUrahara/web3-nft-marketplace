@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { MdNotifications } from 'react-icons/md';
 import { BsSearch } from 'react-icons/bs';
@@ -35,6 +35,7 @@ const Navbar = () => {
                             alt="Nft-Marketplace"
                             width={100}
                             height={100}
+                            objectFit="cover"
                         />
                     </div>
 
@@ -98,6 +99,7 @@ const Navbar = () => {
                                 height={40}
                                 onClick={(e) => option === 'Profile' ? setOption('') : setOption('Profile')}
                                 className={Style.navbar_container_right_profile}
+                                objectFit="cover"
                             />
 
                             {
