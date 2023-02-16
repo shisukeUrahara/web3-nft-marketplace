@@ -72,9 +72,7 @@ const NFTCard = () => {
 
                             <div className={Style.NFTCard_box_update_details_category}>
                                 <BsImages />
-
                             </div>
-
                         </div>
                     </div>
 
