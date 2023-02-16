@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Style from '../styles/index.module.css';
-import { HeroSection,Service ,BigNftSlider,Subscribe, Title, Category} from "../components";
+import { HeroSection,Service ,BigNftSlider,Subscribe, Title, Category, Filter} from "../components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +12,11 @@ export default function Home() {
     <HeroSection />
     <Service />
     <BigNftSlider />
+    <Title
+        heading="Featured NFTs"
+        paragraph="Discover the most outstanding NFTs in all topics of life."
+      />
+    <Filter />
     <Title
         heading="Browse by category"
         content="Explore the NFTs in the most featured categories."
