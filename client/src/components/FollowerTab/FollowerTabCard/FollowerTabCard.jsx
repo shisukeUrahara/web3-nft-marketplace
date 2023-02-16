@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MdVerified } from 'react-icons/md';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { TiTick } from 'react-icons/ti';
 
 import Style from './FollowerTabCard.module.css';
@@ -23,6 +23,7 @@ const FollowerTabCard = ({ item, index }) => {
                         width={500}
                         height={300}
                         className={Style.followerTabCard_box_img_img}
+                        objectFit="cover"
                     />
                 </div>
 
@@ -33,6 +34,7 @@ const FollowerTabCard = ({ item, index }) => {
                         alt="profile picture"
                         width={50}
                         height={50}
+                        objectFit="cover"
                     />
 
                 </div>
