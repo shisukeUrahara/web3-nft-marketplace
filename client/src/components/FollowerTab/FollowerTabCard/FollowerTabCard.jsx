@@ -13,7 +13,6 @@ const FollowerTabCard = ({ item, index }) => {
         <div className={Style.followerTabCard}>
             <div className={Style.followerTabCard_rank}>
                 <p>#{index + 1} <span>🥇</span></p>
-
             </div>
 
             <div className={Style.followerTabCard_box}>
@@ -49,10 +48,10 @@ const FollowerTabCard = ({ item, index }) => {
                     </div>
                     <div className={Style.followerTabCard_box_info_following}>
                         {
-                            !following ? (
-                                <a onClick={() => setFollowing(true)}>Follow{" "}{" "} <span><TiTick /></span></a>
+                            following ? (
+                                <a onClick={() => setFollowing(false)}>Following{" "}{" "} <span><TiTick /></span></a>
                             ) : (
-                                <a onClick={() => setFollowing(false)}>Following{" "}{" "}</a>
+                                <a onClick={() => setFollowing(true)}>Follow{" "}{" "}</a>
                             )
                         }
 
