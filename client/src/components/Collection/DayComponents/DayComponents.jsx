@@ -55,13 +55,13 @@ const DayComponents = () => {
                                 width={30}
                                 height={30}
                                 className={Style.dayComponent_box_title_info_profile_img}
+                                objectFit="covers"
                             />
                             <p>Shisuke Urahara <small><MdVerified /></small></p>
                         </div>
 
-                        <div className={Style.dayComponent_box_title_info_profile}>
+                        <div className={Style.dayComponent_box_title_info_price}>
                             <small>1.25 ETH</small>
-
                         </div>
 
                     </div>
@@ -74,3 +74,4 @@ const DayComponents = () => {
 }
 
 export default DayComponents
+
