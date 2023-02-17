@@ -18,10 +18,10 @@ export default function Home() {
       />
     <AudioLive />
       <FollowerTab />
-      <Title
+      {/* <Title
         heading="Explore NFTs Video"
         content="Click on play icon and enjoy NFTs video"
-      />
+      /> */}
       <Slider />
     <Collection />
     <Title
