@@ -4,14 +4,14 @@ import { MdVerified } from 'react-icons/md';
 import Style from './DayComponents.module.css';
 import images from '../../../img';
 
-const DayComponents = () => {
+const DayComponents = ({ item, index }) => {
     return (
         <div className={Style.dayComponent}>
             <div className={Style.dayComponent_box}>
                 <div className={Style.dayComponent_box_img}>
                     <Image
                         className={Style.dayComponent_box_img_img}
-                        src={images.creatorbackground1}
+                        src={item.background}
                         alt="profile background"
                         width={500}
                         height={300}
@@ -23,7 +23,7 @@ const DayComponents = () => {
 
                 <div className={Style.dayComponent_box_profile}>
                     <Image
-                        src={images.creatorbackground2}
+                        src={item.background}
                         alt="profile"
                         width={200}
                         height={200}
@@ -31,7 +31,7 @@ const DayComponents = () => {
                         objectFit="cover"
                     />
                     <Image
-                        src={images.creatorbackground2}
+                        src={item.background}
                         alt="profile"
                         width={200}
                         height={200}
@@ -40,7 +40,7 @@ const DayComponents = () => {
                     />
 
                     <Image
-                        src={images.creatorbackground2}
+                        src={item.background}
                         alt="profile"
                         width={200}
                         height={200}
@@ -55,7 +55,7 @@ const DayComponents = () => {
                     <div className={Style.dayComponent_box_title_info}>
                         <div className={Style.dayComponent_box_title_info_profile}>
                             <Image
-                                src={images.user1}
+                                src={item.user}
                                 alt="profile"
                                 width={30}
                                 height={30}
