@@ -14,6 +14,7 @@ import FollowerTab from './FollowerTab/FollowerTab';
 import AudioLive from './AudioLive/AudioLive';
 import LikeProfile from './LikeProfile/LikeProfile';
 import Slider from './Slider/Slider';
+import Brand from './Brand/Brand';
 
 
 export {
@@ -32,5 +33,6 @@ export {
     FollowerTab,
     AudioLive,
     LikeProfile,
-    Slider
+    Slider,
+    Brand
 }
