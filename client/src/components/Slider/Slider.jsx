@@ -6,7 +6,7 @@ import Style from './Slider.module.css'
 import SliderCard from './SliderCard/SliderCard';
 
 const Slider = () => {
-    const sliderArray = [1, 2, 3, 4, 5, 6, 7];
+    const sliderArray = [1, 2, 3, 4, 5, 6];
     const [width, setWidth] = useState(0);
     const dragSlider = useRef();
 
@@ -33,12 +33,12 @@ const Slider = () => {
                 <div className={Style.slider_box_button}>
                     <p>Click on play icon and enjoy Nfts Video</p>
                     <div className={Style.slider_box_button_btn}>
-                        <div className={Style.slider_box_button_btn_icon}>
-                            <TiArrowLeftThick onClick={() => handleScroll('left')} />
+                        <div className={Style.slider_box_button_btn_icon} onClick={() => handleScroll('left')}>
+                            <TiArrowLeftThick />
                         </div>
 
-                        <div className={Style.slider_box_button_btn_icon}>
-                            <TiArrowRightThick onClick={() => handleScroll('left')} />
+                        <div className={Style.slider_box_button_btn_icon} onClick={() => handleScroll('right')}>
+                            <TiArrowRightThick />
                         </div>
                     </div>
                 </div>

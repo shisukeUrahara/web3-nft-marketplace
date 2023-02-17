@@ -18,13 +18,14 @@ const SliderCard = () => {
                         width={500}
                         height={300}
                         objectFit="cover"
+                        className={Style.sliderCard_box_img_img}
                     />
                 </motion.div>
 
                 <div className={Style.sliderCard_box_title}>
-                    <p>NFT Video #13467</p>
+                    <p>NFT Video #13467 </p>
                     <div className={Style.sliderCard_box_title_like}>
-                        <LikeProfile />
+                        {/* <LikeProfile /> */}
                         <small>1 of 100</small>
                     </div>
                 </div>
@@ -38,8 +39,6 @@ const SliderCard = () => {
                     <div className={Style.sliderCard_box_price_time}>
                         <small>Remaining time</small>
                         <p>3h : 15m : 20s</p>
-
-
                     </div>
                 </div>
             </div>
