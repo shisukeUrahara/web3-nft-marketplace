@@ -13,6 +13,7 @@ import Collection from './Collection/Collection';
 import FollowerTab from './FollowerTab/FollowerTab';
 import AudioLive from './AudioLive/AudioLive';
 import LikeProfile from './LikeProfile/LikeProfile';
+import Slider from './Slider/Slider';
 
 
 export {
@@ -30,5 +31,6 @@ export {
     Collection,
     FollowerTab,
     AudioLive,
-    LikeProfile
+    LikeProfile,
+    Slider
 }
