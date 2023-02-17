@@ -13,7 +13,7 @@ export default function Home() {
     <Service />
     <BigNftSlider />
     <Title
-        heading="Latest Audio Collection"
+        heading="Audio Collection"
         content="Discover the most outstanding NFTs in all topics of life."
       />
     <AudioLive />

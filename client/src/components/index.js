@@ -12,6 +12,7 @@ import NFTCard from './NFTCard/NFTCard';
 import Collection from './Collection/Collection';
 import FollowerTab from './FollowerTab/FollowerTab';
 import AudioLive from './AudioLive/AudioLive';
+import LikeProfile from './LikeProfile/LikeProfile';
 
 
 export {
@@ -28,5 +29,6 @@ export {
     NFTCard,
     Collection,
     FollowerTab,
-    AudioLive
+    AudioLive,
+    LikeProfile
 }

@@ -13,11 +13,12 @@ const LikeProfile = () => {
                 imageArray.map((item, index) => (
                     <div className={Style.like_box} key={index + 1}>
                         <Image
-                            src={images.user + `${index + 1}`}
+                            src={images.user1}
                             width={15}
                             height={15}
                             objectFit="cover"
                             key={index + 1}
+                            className={Style.like_box_img}
                         />
 
                     </div>
