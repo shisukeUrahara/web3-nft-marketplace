@@ -67,19 +67,6 @@ const CollectionProfile = () => {
 
                     </div>
 
-                    {/* <div className={Style.collectionProfile_box_middle_box}>
-                        {cardArray.map((item, index) => (
-                            <div
-                                className={Style.collectionProfile_box_middle_box_item}
-                                key={index + 1}
-                            >
-                                <small>Floor price</small>
-                                <p>${index + 1}95,4683</p>
-                                <span>+ {index + 2}.11%</span>
-                            </div>
-                        ))}
-                    </div> */}
-
                 </div>
 
             </div>
