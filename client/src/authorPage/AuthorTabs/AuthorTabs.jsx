@@ -69,7 +69,7 @@ const AuthorTabs = ({ option, setOption }) => {
 
                 <div className={Style.AuthorTabs_box_right}>
                     <div
-                        className={Style.AuthorTaps_box_right_para}
+                        className={Style.AuthorTabs_box_right_para}
                         onClick={() => setOpenList((prevValue) => !prevValue)}
                     >
                         <p>{selectedMenu}</p>
@@ -77,12 +77,12 @@ const AuthorTabs = ({ option, setOption }) => {
                     </div>
 
                     {openList && (
-                        <div className={Style.AuthorTaps_box_right_list}>
+                        <div className={Style.AuthorTabs_box_right_list}>
                             {listArray.map((item, index) => (
                                 <div
                                     key={index + 1}
                                     onClick={() => setSelectedMenu(item)}
-                                    className={Style.AuthorTaps_box_right_list_item}
+                                    className={Style.AuthorTabs_box_right_list_item}
                                 >
                                     <p>{item}</p>
                                     <span>{selectedMenu == item && <TiTick />}</span>
