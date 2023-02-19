@@ -81,12 +81,12 @@ const AuthorProfileCard = () => {
                     <Button btnText="Follow" handleClick={() => { }} />
                     <MdCloudUpload
                         onClick={() => { manageOption('share') }}
-                        className={Style.AuthorProfileCard_box_info_share_icon}
+                        className={Style.AuthorProfileCard_box_share_icon}
                     />
 
                     {
                         option === 'share' && (
-                            <div className={Style.AuthorProfileCard_box_info_share_upload}>
+                            <div className={Style.AuthorProfileCard_box_share_upload}>
                                 <p>
                                     <span>
                                         <TiSocialFacebook />
