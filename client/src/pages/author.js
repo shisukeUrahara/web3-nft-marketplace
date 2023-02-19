@@ -5,6 +5,7 @@ import { Banner ,NFTCardTwo} from 'src/collectionPage';
 import { Brand,Title } from '../components';
 import { AuthorProfileCard,AuthorTabs } from 'src/authorPage';
 import images from '../img';
+import FollowerTabCard from '@/components/FollowerTab/FollowerTabCard/FollowerTabCard';
 
 const author = () => {
     const popularArray=[
@@ -25,6 +26,17 @@ const [option,setOption]=useState('collectibles');
     <div className={Style.Banner}>
         <Banner bannerImage={images.creatorbackground3} />
         <AuthorProfileCard />
+        <AuthorTabs option={option} setOption={setOption}/>
+        <Title
+        heading="Popular Creators"
+        content="Click on music icon and enjoy NTF music or audio"
+      />
+      <Brand />
+      {/* {
+        popularArray.map((item,index)=>(
+            <FollowerTabCard key={index+1} item={item} index={index} />
+        ))
+      } */}
 
     </div>
   )
