@@ -8,7 +8,7 @@ import images from '../../img'
 
 const AuthorTabs = ({ option, setOption }) => {
     const [openList, setOpenList] = useState(false);
-    const [activeBtn, setActiveBtn] = useState(0);
+    const [activeBtn, setActiveBtn] = useState(1);
     const [selectedMenu, setSelectedMenu] = useState("Most Recent");
     const listArray = [
         "Created By Admin",
@@ -58,7 +58,7 @@ const AuthorTabs = ({ option, setOption }) => {
 
                         <button
                             className={`${activeBtn == 5 ? Style.active : ""}`}
-                            onClick={() => openTab('followers', 5)}
+                            onClick={() => openTab('follower', 5)}
                         >
                             Followers
                         </button>
