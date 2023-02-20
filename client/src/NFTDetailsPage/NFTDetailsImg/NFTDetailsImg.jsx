@@ -71,7 +71,7 @@ const NFTDetailsImg = () => {
                 }
 
                 <div className={Style.NFTDetailsImg_box_details} onClick={() => setDetails((prevValue) => !prevValue)}>
-                    <p>Description</p>
+                    <p>Details</p>
                     {
                         details ? (
                             <TiArrowSortedUp />
