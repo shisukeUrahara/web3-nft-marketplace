@@ -1,4 +1,4 @@
-import React,{useState,useMemo,useCallback,useContext} from 'react';
+import React,{useState,useCallback,useContext} from 'react';
 import Image from 'next/legacy/image';
 import {useDropzone} from 'react-dropzone'
 
