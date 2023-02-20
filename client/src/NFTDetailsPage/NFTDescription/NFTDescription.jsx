@@ -81,7 +81,7 @@ const NFTDescription = () => {
                         <BsThreeDots className={Style.NFTDescription_box_share_box_icon} onClick={() => option === 'nftMenu' ? setOption('') : setOption('nftMenu')} />
                         {
                             option === 'nftMenu' && (
-                                <div className={Style.NFTDescription_box_share_box_icon}>
+                                <div className={Style.NFTDescription_box_share_box_social}>
                                     <a href="#">
                                         <BiDollar /> <span>Change Price</span>
                                     </a>
@@ -144,7 +144,7 @@ const NFTDescription = () => {
 
                     <div className={Style.NFTDescription_box_profile_bidding}>
                         <p>
-                            <MdVerified /> <span>Auction ending in: </span>
+                            <MdTimer /> <span>Auction ending in: </span>
                         </p>
 
                         <div className={Style.NFTDescription_box_profile_bidding_box_timer}>
