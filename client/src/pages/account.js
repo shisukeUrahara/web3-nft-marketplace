@@ -8,14 +8,17 @@ import { Form } from 'src/accountPage';
 
 const account = () => {
   const [fileUrl,setFileUrl]=useState(null);
-  const onDrop=useCallback(async (acceptedFile)=>{
-    setFileUrl(acceptedFile[0])
-  },[]);
+
+  const onDrop = useCallback(acceptedFiles => {
+    // Do something with the files
+    setFileUrl(acceptedFiles[0])
+
+  }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*",
-    maxSize: 5000000,
+    "accept": "image/*",
+    "maxSize": 5000000,
   });
 
   return (
