@@ -1,6 +1,6 @@
 import React,{useState,useMemo,useCallback,useContext} from 'react';
 import Image from 'next/legacy/image';
-import {useDropZone} from 'react-dropzone'
+import {useDropzone} from 'react-dropzone'
 
 import Style from '../styles/account.module.css';
 import images from '../img';
@@ -8,6 +8,15 @@ import { Form } from 'src/accountPage';
 
 const account = () => {
   const [fileUrl,setFileUrl]=useState(null);
+  const onDrop=useCallback(async (acceptedFile)=>{
+    setFileUrl(acceptedFile[0])
+  },[]);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    maxSize: 5000000,
+  });
 
   return (
     <div className={Style.account}>
@@ -21,8 +30,8 @@ const account = () => {
       </div>
 
      <div className={Style.account_box}>
-      <div className={Style.account_box_img}>
-        <input />
+      <div className={Style.account_box_img} {...getRootProps()}>
+        <input {...getInputProps()} />
         <Image
         src={images.user1}
         alt="account upload"
