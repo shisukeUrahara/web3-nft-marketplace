@@ -6,7 +6,7 @@ const HelpCenter = () => {
   const helpCenter = [
     {
       name: "About",
-      link: "aboutus",
+      link: "aboutUs",
     },
     {
       name: "Contact Us",
