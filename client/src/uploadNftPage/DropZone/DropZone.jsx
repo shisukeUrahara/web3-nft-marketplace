@@ -11,7 +11,7 @@ const DropZone = ({
     title,
     heading,
     subHeading,
-    name,
+    itemName,
     website,
     description,
     royalties,
@@ -63,6 +63,7 @@ const DropZone = ({
                                 alt="nft image"
                                 width={200}
                                 height={200}
+                                objectFit="contain"
                             />
 
                             <div className={Style.DropZone_box_aside_box_preview}>
