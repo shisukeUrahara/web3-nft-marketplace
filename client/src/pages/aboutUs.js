@@ -83,6 +83,7 @@ const aboutUs = () => {
                   width={500}
                   height={500}
                   className={Style.aboutUs_box_founder_box_img_img}
+                  objectFit="cover"
                 />
                 <h3>{item.name}</h3>
                 <p>{item.position}</p>
