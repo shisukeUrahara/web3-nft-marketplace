@@ -10,7 +10,7 @@ const subscription = () => {
           plan: "STARTER",
           price: "$5/mo",
           popular: "",
-          service: ["Automated Reporting", "Faster Processing", "Customizations"],
+          service: ["Automated Reporting", "Faster Processing", "Customizations","20 builds"],
           info: "Literally you probably haven't heard of them jean shorts.",
         },
         {

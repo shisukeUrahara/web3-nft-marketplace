@@ -9,9 +9,13 @@ const Subscription = ({ item, index }) => {
         <div className={Style.SubscriptionBox}>
             <div className={Style.SubscriptionBox_box}>
                 <span className={Style.SubscriptionBox_box_span}>{item.plan}</span>
-                <small className={Style.SubscriptionBox_box_small}>
-                    {item.popular || ""}
-                </small>
+                {
+                    item.popular && (
+                        <small className={Style.SubscriptionBox_box_small}>
+                            {item.popular}
+                        </small>
+                    )
+                }
                 <p className={Style.SubscriptionBox_box_price}>{item.price}</p>
 
                 <div className={Style.SubscriptionBox_box_info}>
