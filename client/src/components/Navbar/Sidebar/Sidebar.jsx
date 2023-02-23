@@ -16,7 +16,7 @@ import images from '../../../img';
 import { Button } from '../..';
 
 
-const Sidebar = ({ setOpenSideMenu }) => {
+const Sidebar = ({ setOpenSideMenu, currentAccount, connectWallet }) => {
     const [option, setOption] = useState('');
     const discover = [
         {
@@ -177,7 +177,15 @@ const Sidebar = ({ setOpenSideMenu }) => {
             </div>
 
             <div className={Style.sideBar_button}>
-                <Button btnText="Create" handleClick={() => { }} />
+                {
+                    currentAccount == "" ? (
+                        <Button btnText="Connect" handleClick={() => { connectWallet() }} />
+                    ) : (
+                        <Link href={{ pathname: '/uploadNFT' }}>
+                            <Button btnText="Create" handleClick={() => { }} />
+                        </Link>
+                    )
+                }
                 <Button btnText="Connect Wallet" handleClick={() => { }} />
 
             </div>
