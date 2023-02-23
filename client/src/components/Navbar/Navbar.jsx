@@ -8,11 +8,13 @@ import Style from './Navbar.module.css';
 import { Discover, Notifications, HelpCenter, Profile, Sidebar } from './';
 import images from '../../img';
 import { Button } from '..';
+import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const Navbar = () => {
     // use states
     const [option, setOption] = useState('');
-    const [openSidebar, setOpenSidebar] = useState(false)
+    const [openSidebar, setOpenSidebar] = useState(false);
+    const { currentAccount, connectWallet } = useNftMarketPlaceContext();
 
     const openMenu = (e) => {
         let selectedOption = e.target.innerText;
@@ -86,7 +88,14 @@ const Navbar = () => {
 
                     {/* Create button section  */}
                     <div className={Style.navbar_container_right_button}>
-                        <Button btnText="Create" handleClick={() => { }} />
+                        {
+                            currentAccount == "" ?
+                                (<Button btnText="Connect" handleClick={() => { connectWallet() }} />) :
+                                (<Link href={{ pathname: "/uploadNFT" }}>
+                                    <Button btnText="Create" handleClick={() => { }} />
+                                </Link>)
+                        }
+
                     </div>
 
                     {/* user profile section */}

@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
@@ -8,9 +9,19 @@ import { HeroSection,Service ,BigNftSlider,
    FollowerTab ,AudioLive, Slider,
     Brand, Video} from "../components";
 
+import { useNftMarketPlaceContext } from "src/Context/NftMarketPlaceContext";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const {checkIfWalletConnected}=useNftMarketPlaceContext();
+
+  useEffect(()=>{
+
+checkIfWalletConnected();
+  },[]);
+
+
   return (
    <div className={Style.homePage}>
     <HeroSection />
