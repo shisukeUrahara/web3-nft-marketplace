@@ -1,14 +1,34 @@
 import React,{useState,useEffect,useContext} from 'react';
 import web3modal from 'web3modal';
 import {ethers} from 'ethers';
-import Router from 'next/router';
+import {useRouter} from 'next/router';
 import {create as ipfsHttpClient } from 'ipfs-http-client';
 import axios from 'axios';
 
 import { NftMarketPlaceABI,NftMarketPlaceAddress } from './constants';
 
 const NftMarketPlaceContext= React.createContext();
-const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+// const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+const projectSecretKey = process.env.NEXT_PUBLIC__PROJECT_SECRET_KEY;
+const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
+  "base64"
+)}`;
+
+console.log("**@ nftMarketPlace context , projectId is , ",projectId)
+
+const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
+
+const client = ipfsHttpClient({
+  host: "infura-ipfs.io",
+  port: 5001,
+  protocol: "https",
+  headers: {
+    authorization: auth,
+  },
+});
+
 
 
 //  smart contract functions
@@ -36,6 +56,7 @@ const connectWithSmartContract= async ()=>{
 export const NftMarketPlaceProvider=(({children})=>{
 
     const [currentAccount,setCurrentAccount]=useState("");
+    const router=useRouter();
 
     const checkIfWalletConnected= async ()=>{
         try{
@@ -83,8 +104,19 @@ export const NftMarketPlaceProvider=(({children})=>{
 
     const uploadToIpfs= async (file)=>{
         try{
-            const fileHash= await client.add({client:file});
-            const url=`https://ipfs.infura.io/ipfs/${fileHash.path}`;
+
+          console.log("**@ uploadToIpfs called , project id is , ",projectId)
+          console.log("**@ uploadToIpfs called , project secret is , ",projectSecretKey)
+          console.log("**@ uploadToIpfs called , project subdomain is , ",subdomain)
+
+            const fileHash= await client.add({content:file});
+            console.log("**@ uploadToIpfs called fileHash is  , ",fileHash);
+
+            const url=`${subdomain}/ipfs/${fileHash.cid}`;
+            // const url=`https://ipfs.infura.io/ipfs/${fileHash.cid}`;
+
+            console.log("**@ uploadToIpfs called url is  , ",url);
+
             return url;
 
         }
@@ -93,23 +125,30 @@ export const NftMarketPlaceProvider=(({children})=>{
         }
     }
 
-    const createNft= async (formInput,fileUrl,router)=>{
-            const {name,description,price}=formInput;
+    const createNft= async ( name,price,image,description,router)=>{
+      console.log("**@ createNft called with name , ",name);
+      console.log("**@ createNft called with price , ",price);
+      console.log("**@ createNft called with image , ",image);
+      console.log("**@ createNft called with description , ",description);
 
-            if(!name || !description || !price || !fileUrl){
+            if(!name || !description || !price || !image){
                 return console.log("**@ Incomplete data provider for creating nft");
             }
 
-            const data = JSON.stringify({name,description,image:fileUrl});
+            const data = JSON.stringify({name,description,image});
+            console.log("**@ stringified data is , ",data)
 
             try {
                 const added = await client.add(data);
-          
+                console.log("**@ added data is , ",added)
+
                 const url = `https://infura-ipfs.io/ipfs/${added.path}`;
+                console.log("**@ url data is , ",url)
 
-                return url
 
-                // await createSale(url, price);
+                // return url
+
+                await createSale(url, price);
                 // router.push("/searchPage");
               } catch (err) {
                 console.log("**@ Error while uploading data to ipfs and creating nft, error is , ",err);
@@ -118,11 +157,23 @@ export const NftMarketPlaceProvider=(({children})=>{
 
     const createSale= async (url,price,isReselling,id)=>{
         try{
-            const etherPrice= ethers.utils.parseUnits(price,"ether");
+          console.log("**@ createSale called with url , ",url);
+          console.log("**@ createSale called with price , ",price);
+          console.log("**@ createSale called with isReselling , ",isReselling);
+          console.log("**@ createSale called with id , ",id);
+          console.log("**@ ethers is  , ",ethers);
+          console.log("**@ utils is , , ",ethers.utils);
+
+            const etherPrice= ethers.utils.parseUnits(price,18);
+            console.log("**@ etherPrice is , ",etherPrice);
             const contract = await connectWithSmartContract();
-            const listingPrice= await contract.getListingPrice();
+            console.log("**@ etherPrice is , ",etherPrice);
+
+            const listingPrice= await contract.listingPrice();
+            console.log("**@ etherPrice is , ",etherPrice);
+
             const transaction = !isReselling
-            ? await contract.createToken(url, etherPrice, {
+            ? await contract.createNft(url, etherPrice, {
                 value: listingPrice.toString(),
               })
             : await contract.resellToken(id, etherPrice, {
@@ -131,6 +182,7 @@ export const NftMarketPlaceProvider=(({children})=>{
     
           await transaction.wait();
           console.log("**@ create sale tx is , ",transaction);
+          router.push("/searchPage")
 
 
         }
@@ -242,7 +294,13 @@ export const NftMarketPlaceProvider=(({children})=>{
 
     useEffect(()=>{
         checkIfWalletConnected();
-    },[])
+    },[]);
+
+    useEffect(() => {
+      if (currentAccount) {
+        fetchNFTs();
+      }
+    }, []);
 
     
 

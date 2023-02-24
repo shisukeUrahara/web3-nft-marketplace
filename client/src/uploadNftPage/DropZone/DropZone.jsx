@@ -11,18 +11,24 @@ const DropZone = ({
     title,
     heading,
     subHeading,
-    itemName,
+    name,
     website,
     description,
     royalties,
     fileSize,
     category,
     properties,
-    image
+    setImage,
+    uploadToIpfs
 }) => {
     const [fileUrl, setFileUrl] = useState(null);
     const onDrop = useCallback(async (acceptedFile) => {
-        setFileUrl(acceptedFile[0]);
+        console.log("**@ onDrop called with acceptedFile , ", acceptedFile)
+        const url = await uploadToIpfs(acceptedFile[0]);
+        console.log("**@ onDrop called , url is  , ", url)
+
+        setFileUrl(url);
+        setImage(url);
 
     });
 
@@ -40,7 +46,7 @@ const DropZone = ({
                     <p>{title}</p>
                     <div className={Style.DropZone_box_input_img}>
                         <Image
-                            src={image}
+                            src={images.upload}
                             alt="upload"
                             width={100}
                             height={100}
@@ -59,7 +65,7 @@ const DropZone = ({
 
                         <div className={Style.DropZone_box_aside_box}>
                             <Image
-                                src={images.nft_image_1}
+                                src={fileUrl}
                                 alt="nft image"
                                 width={200}
                                 height={200}
@@ -70,7 +76,7 @@ const DropZone = ({
                                 <div className={Style.DropZone_box_aside_box_preview_one}>
                                     <p>
                                         <samp>NFT Name: </samp>
-                                        {itemName || " "}
+                                        {name || " "}
                                     </p>
                                     <p>
                                         <samp>Website: </samp>

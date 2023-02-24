@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 import Style from '../styles/uploadNft.module.css';
 import { UploadNFT } from 'src/uploadNftPage';
+import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const uploadNFT = () => {
+  const {uploadToIpfs,createNft}=useNftMarketPlaceContext();
   return (
     <div className={Style.UploadNFT}>
       <div className={Style.UploadNFT_box}>
@@ -24,7 +26,7 @@ const uploadNFT = () => {
         </div>
 
         <div className={Style.UploadNFT_box_form}>
-          <UploadNFT />
+          <UploadNFT uploadToIpfs={uploadToIpfs} createNft={createNft}  />
 
         </div>
 
