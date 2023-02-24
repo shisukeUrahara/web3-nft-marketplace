@@ -195,8 +195,12 @@ export const NftMarketPlaceProvider=(({children})=>{
     const fetchNfts= async ()=>{
         try{
             const provider= new ethers.providers.JsonRpcProvider();
+            console.log("**@ nft provider is , ",provider);
+
             const contract= fetchContract(provider);
-            const data= await contract.fetchMarketItem();
+            console.log("**@ nft contract is , ",contract);
+            const data= await contract.fetchMarketItems();
+            console.log("**@ nft data is , ",data);
 
             const items = await Promise.all(
                 data.map(
@@ -294,11 +298,13 @@ export const NftMarketPlaceProvider=(({children})=>{
 
     useEffect(()=>{
         checkIfWalletConnected();
+        connectWithSmartContract();
     },[]);
 
     useEffect(() => {
       if (currentAccount) {
-        fetchNFTs();
+        connectWithSmartContract();
+        fetchNfts();
       }
     }, []);
 

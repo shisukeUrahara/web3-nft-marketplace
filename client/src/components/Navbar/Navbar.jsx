@@ -3,7 +3,8 @@ import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { MdNotifications } from 'react-icons/md';
 import { BsSearch } from 'react-icons/bs';
-import { CgMenuLeft, CgMenuRight } from 'react-icons/cg'
+import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Style from './Navbar.module.css';
 import { Discover, Notifications, HelpCenter, Profile, Sidebar } from './';
 import images from '../../img';
@@ -88,13 +89,19 @@ const Navbar = () => {
 
                     {/* Create button section  */}
                     <div className={Style.navbar_container_right_button}>
-                        {
+                        {/* {
                             currentAccount == "" ?
                                 (<Button btnText="Connect" handleClick={() => { connectWallet() }} />) :
                                 (<Link href={{ pathname: "/uploadNFT" }}>
                                     <Button btnText="Create" handleClick={() => { }} />
                                 </Link>)
-                        }
+                        } */}
+
+                        <ConnectButton
+                            accountStatus="address"
+                            showBalance={false}
+                            label="Connect wallet"
+                        />
 
                     </div>
 
