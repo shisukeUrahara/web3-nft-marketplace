@@ -12,7 +12,7 @@ contract NftMarketPlace is ERC721URIStorage {
     Counters.Counter private _tokenIds;
     Counters.Counter private _itemsSold;
 
-    uint256 listingPrice = 0.025 ether;
+    uint256 listingPrice = 0.0025 ether;
     address payable owner;
 
     mapping(uint256 => MarketItem) private idToMarketItem;
@@ -158,7 +158,7 @@ contract NftMarketPlace is ERC721URIStorage {
     }
 
     /* Returns only items that a user has purchased */
-    function fetchMyNfts() public view returns (MarketItem[] memory) {
+    function fetchMyNFTs() public view returns (MarketItem[] memory) {
         uint256 totalItemCount = _tokenIds.current();
         uint256 itemCount = 0;
         uint256 currentIndex = 0;

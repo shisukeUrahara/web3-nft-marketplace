@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/legacy/image';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Link from 'next/link';
 import { GrClose } from 'react-icons/gr';
 import {
@@ -16,7 +17,7 @@ import images from '../../../img';
 import { Button } from '../..';
 
 
-const Sidebar = ({ setOpenSideMenu, currentAccount, connectWallet }) => {
+const Sidebar = ({ setOpenSideMenu, currentAccount }) => {
     const [option, setOption] = useState('');
     const discover = [
         {
@@ -177,7 +178,7 @@ const Sidebar = ({ setOpenSideMenu, currentAccount, connectWallet }) => {
             </div>
 
             <div className={Style.sideBar_button}>
-                {
+                {/* {
                     currentAccount == "" ? (
                         <Button btnText="Connect" handleClick={() => { connectWallet() }} />
                     ) : (
@@ -185,8 +186,13 @@ const Sidebar = ({ setOpenSideMenu, currentAccount, connectWallet }) => {
                             <Button btnText="Create" handleClick={() => { }} />
                         </Link>
                     )
-                }
-                <Button btnText="Connect Wallet" handleClick={() => { }} />
+                } */}
+
+                <ConnectButton
+                    accountStatus="address"
+                    showBalance={false}
+                    label="Connect wallet"
+                />
 
             </div>
 

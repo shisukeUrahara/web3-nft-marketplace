@@ -4,6 +4,7 @@ import {ethers} from 'ethers';
 import {useRouter} from 'next/router';
 import {create as ipfsHttpClient } from 'ipfs-http-client';
 import axios from 'axios';
+import { useAccount,useProvider,useSigner } from 'wagmi';
 
 import { NftMarketPlaceABI,NftMarketPlaceAddress } from './constants';
 
@@ -11,7 +12,7 @@ const NftMarketPlaceContext= React.createContext();
 // const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
-const projectSecretKey = process.env.NEXT_PUBLIC__PROJECT_SECRET_KEY;
+const projectSecretKey = process.env.NEXT_PUBLIC_PROJECT_SECRET_KEY;
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   "base64"
 )}`;
@@ -33,52 +34,38 @@ const client = ipfsHttpClient({
 
 //  smart contract functions
 
-//  fetching smart contract
+
+
+export const NftMarketPlaceProvider=(({children})=>{
+  const { address:currentAccount, isConnecting, isDisconnected } = useAccount();
+  const { data: signer } = useSigner();
+  const provider = useProvider()
+
+
+
+
+    const router=useRouter();
+
+    //  fetching smart contract
 const fetchContract= (signerOrProvider)=>{
-    return new ethers.Contract(NftMarketPlaceAddress,NftMarketPlaceABI,signerOrProvider);
+  return new ethers.Contract(NftMarketPlaceAddress,NftMarketPlaceABI,signerOrProvider);
 }
 
 //  connecting with smart contract
 const connectWithSmartContract= async ()=>{
-    try{
-        const web3Modal=new web3modal();
-        const connection= await web3Modal.connect();
-        const provider= new ethers.providers.Web3Provider(connection);
-        const signer= provider.getSigner();
-        const contract= fetchContract(signer);
-        return contract
-    }
-    catch(err){
-        console.log("**@ error caught while connecting with smart contract , error is , ",err);
-    }
+  try{
+      // const web3Modal=new web3modal();
+      // const connection= await web3Modal.connect();
+      // const provider= new ethers.providers.Web3Provider(connection);
+      // const signer= provider.getSigner();
+      const contract= fetchContract(signer);
+      return contract
+  }
+  catch(err){
+      console.log("**@ error caught while connecting with smart contract , error is , ",err);
+  }
 }
 
-export const NftMarketPlaceProvider=(({children})=>{
-
-    const [currentAccount,setCurrentAccount]=useState("");
-    const router=useRouter();
-
-    const checkIfWalletConnected= async ()=>{
-        try{
-            if(!window.ethereum){
-                console.log("**@ Install metamask");
-                return;
-            }
-            //  metamask is present
-            const accounts= await window.ethereum.request({method:"eth_accounts"});
-            if(accounts.length){
-                console.log("**@ connected accounts array is , ",accounts);
-                setCurrentAccount(accounts[0]);
-            }
-            else{
-                console.log("**@ No wallet connected accounts found")
-            }
-
-        }
-        catch(err){
-            console.log("**@ error caught in  checkIfWalletConnected , error is , ",err);
-        }
-    }
 
     const connectWallet= async ()=>{
         try{
@@ -112,7 +99,7 @@ export const NftMarketPlaceProvider=(({children})=>{
             const fileHash= await client.add({content:file});
             console.log("**@ uploadToIpfs called fileHash is  , ",fileHash);
 
-            const url=`${subdomain}/ipfs/${fileHash.cid}`;
+            const url=`${subdomain}/ipfs/${fileHash.path}`;
             // const url=`https://ipfs.infura.io/ipfs/${fileHash.cid}`;
 
             console.log("**@ uploadToIpfs called url is  , ",url);
@@ -142,7 +129,9 @@ export const NftMarketPlaceProvider=(({children})=>{
                 const added = await client.add(data);
                 console.log("**@ added data is , ",added)
 
-                const url = `https://infura-ipfs.io/ipfs/${added.path}`;
+                // const url = `https://infura-ipfs.io/ipfs/${added.path}`;
+                const url=`${subdomain}/ipfs/${added.path}`;
+
                 console.log("**@ url data is , ",url)
 
 
@@ -167,10 +156,10 @@ export const NftMarketPlaceProvider=(({children})=>{
             const etherPrice= ethers.utils.parseUnits(price,18);
             console.log("**@ etherPrice is , ",etherPrice);
             const contract = await connectWithSmartContract();
-            console.log("**@ etherPrice is , ",etherPrice);
+            console.log("**@ contract is , ",contract);
 
-            const listingPrice= await contract.listingPrice();
-            console.log("**@ etherPrice is , ",etherPrice);
+            const listingPrice= await contract.getListingPrice();
+            console.log("**@ listingPrice is , ",listingPrice);
 
             const transaction = !isReselling
             ? await contract.createNft(url, etherPrice, {
@@ -194,7 +183,7 @@ export const NftMarketPlaceProvider=(({children})=>{
 
     const fetchNfts= async ()=>{
         try{
-            const provider= new ethers.providers.JsonRpcProvider();
+            // const provider= new ethers.providers.JsonRpcProvider();
             console.log("**@ nft provider is , ",provider);
 
             const contract= fetchContract(provider);
@@ -296,10 +285,9 @@ export const NftMarketPlaceProvider=(({children})=>{
         }
       };
 
-    useEffect(()=>{
-        checkIfWalletConnected();
-        connectWithSmartContract();
-    },[]);
+    // useEffect(()=>{
+    //     connectWithSmartContract();
+    // },[]);
 
     useEffect(() => {
       if (currentAccount) {
@@ -314,7 +302,6 @@ export const NftMarketPlaceProvider=(({children})=>{
     return (
         <NftMarketPlaceContext.Provider value={{
             currentAccount,
-            checkIfWalletConnected,
             connectWallet,
             uploadToIpfs,
             createNft,

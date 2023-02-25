@@ -14,11 +14,10 @@ import { useNftMarketPlaceContext } from "src/Context/NftMarketPlaceContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {checkIfWalletConnected}=useNftMarketPlaceContext();
+  const {}=useNftMarketPlaceContext();
 
   useEffect(()=>{
 
-checkIfWalletConnected();
   },[]);
 
 

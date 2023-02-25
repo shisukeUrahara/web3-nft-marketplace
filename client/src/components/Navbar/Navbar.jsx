@@ -15,7 +15,7 @@ const Navbar = () => {
     // use states
     const [option, setOption] = useState('');
     const [openSidebar, setOpenSidebar] = useState(false);
-    const { currentAccount, connectWallet } = useNftMarketPlaceContext();
+    const { currentAccount } = useNftMarketPlaceContext();
 
     const openMenu = (e) => {
         let selectedOption = e.target.innerText;
@@ -140,7 +140,7 @@ const Navbar = () => {
 
             {
                 openSidebar && <div className={Style.sideBar}>
-                    <Sidebar setOpenSideMenu={setOpenSidebar} currentAccount={currentAccount} connectWallet={connectWallet} />
+                    <Sidebar setOpenSideMenu={setOpenSidebar} currentAccount={currentAccount} />
                 </div>
             }
 

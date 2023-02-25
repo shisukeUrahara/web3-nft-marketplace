@@ -18,9 +18,11 @@ const searchPage = () => {
       if (currentAccount) {
         fetchNfts().then((items) => {
           console.log("**@ fetch nft items are , ",items)
+         if(items){
           setNfts(items.reverse());
           setNftsCopy(items);
           console.log(nfts);
+         }
         });
       }
     } catch (err) {
@@ -54,7 +56,7 @@ const searchPage = () => {
       <Banner bannerImage={images.creatorbackground2}/>
       <SearchBar />
       <Filter />
-      <NFTCardTwo NFTData={collectionArray} />
+      <NFTCardTwo NFTData={nfts} />
       <Slider />
       <Brand />
 

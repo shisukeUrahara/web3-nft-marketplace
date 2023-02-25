@@ -44,7 +44,7 @@ const NFTCardTwo = ({ NFTData }) => {
                         <div className={Style.NFTCardTwo_box_info}>
                             <div className={Style.NFTCardTwo_box_info_left}>
                                 <LikeProfile />
-                                <p>Clone #{index + 1}</p>
+                                <p>{item.name}</p>
                             </div>
                             <small>4{index + 2}</small>
                         </div>
@@ -52,7 +52,7 @@ const NFTCardTwo = ({ NFTData }) => {
                         <div className={Style.NFTCardTwo_box_price}>
                             <div className={Style.NFTCardTwo_box_price_box}>
                                 <small>Current Bid</small>
-                                <p>1{index + 5}.000 ETH</p>
+                                <p>{item.price} ETH</p>
                             </div>
 
 
