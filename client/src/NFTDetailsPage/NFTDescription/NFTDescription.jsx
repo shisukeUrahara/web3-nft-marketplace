@@ -18,6 +18,8 @@ import {
 import { BiTransferAlt, BiDollar } from 'react-icons/bi';
 import Link from 'next/link';
 import { useAccount } from 'wagmi';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import Style from './NFTDescription.module.css';
 import images from '../../img';
@@ -28,6 +30,7 @@ import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 const NFTDescription = ({ nft }) => {
     const { address: currentAccount } = useAccount();
     const { buyNft } = useNftMarketPlaceContext();
+    const router = useRouter();
 
     const [option, setOption] = useState('');
     const [tab, setTab] = useState('history');
@@ -199,7 +202,7 @@ const NFTDescription = ({ nft }) => {
                                     <Button
                                         icon={<FaWallet />}
                                         btnText="List on marketPlace"
-                                        handleClick={() => { }}
+                                        handleClick={() => { router.push(`/reSellNft?id=${nft.tokenId}&tokenURI=${nft.tokenURI}&price=${nft.price}`) }}
                                         classStyle={Style.button}
                                     />
                                 ) : (
