@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/legacy/image';
 import {
     MdVerified, MdCloudUpload, MdTimer,
@@ -15,14 +15,20 @@ import {
     TiArrowSortedDown,
     TiArrowSortedUp
 } from 'react-icons/ti';
-import { BiTransferAlt, BiDollar } from 'react-icons/bi'
+import { BiTransferAlt, BiDollar } from 'react-icons/bi';
+import Link from 'next/link';
+import { useAccount } from 'wagmi';
 
 import Style from './NFTDescription.module.css';
 import images from '../../img';
 import { Button } from '@/components/index';
 import { NFTTabs } from '..';
+import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
-const NFTDescription = () => {
+const NFTDescription = ({ nft }) => {
+    const { address: currentAccount } = useAccount();
+    const { buyNft } = useNftMarketPlaceContext();
+
     const [option, setOption] = useState('');
     const [tab, setTab] = useState('history');
 
@@ -105,7 +111,7 @@ const NFTDescription = () => {
                 </div>
 
                 <div className={Style.NFTDescription_box_profile}>
-                    <h1>BearX #23456</h1>
+                    <h1>{nft.name} #{nft.tokenId}</h1>
                     <div className={Style.NFTDescription_box_profile_box}>
                         <div className={Style.NFTDescription_box_profile_box_left}>
                             <Image
@@ -118,7 +124,9 @@ const NFTDescription = () => {
 
                             <div className={Style.NFTDescription_box_profile_box_left_info}>
                                 <small>Creator</small> <br />
-                                <small> Karli Costa <MdVerified /> </small>
+                                <Link href={{ pathname: '/author', query: `${nft.seller}` }}>
+                                    <span> Karli Costa <MdVerified /> </span>
+                                </Link>
                             </div>
 
                         </div>
@@ -135,7 +143,7 @@ const NFTDescription = () => {
                             <div className={Style.NFTDescription_box_profile_box_right_info}>
                                 <small>Collection</small> <br />
                                 <span>
-                                    Mokeny app <MdVerified />
+                                    Monkey app <MdVerified />
                                 </span>
 
                             </div>
@@ -173,7 +181,7 @@ const NFTDescription = () => {
                         <div className={Style.NFTDescription_box_profile_bidding_box_price}>
                             <div className={Style.NFTDescription_box_profile_bidding_box_price_bid}>
                                 <small>Current Bid</small>
-                                <p>1.000 ETH <span>(( ≈ $ 3,221.21))</span></p>
+                                <p>{nft.price} ETH <span>(( ≈ $ 3,221.21))</span></p>
 
                             </div>
 
@@ -182,17 +190,33 @@ const NFTDescription = () => {
                         </div>
 
                         <div className={Style.NFTDescription_box_profile_bidding_box_button}>
-                            <Button
-                                icon={<FaWallet />}
-                                btnText="Place a bid"
-                                handleClick={() => { }}
-                                classStyle={Style.button}
-                            />
+                            {
+                                currentAccount?.toLowerCase() === nft.seller.toLowerCase() ? (
+                                    <p>
+                                        You cannot buy your own nft
+                                    </p>
+                                ) : currentAccount?.toLowerCase() === nft.owner.toLowerCase() ? (
+                                    <Button
+                                        icon={<FaWallet />}
+                                        btnText="List on marketPlace"
+                                        handleClick={() => { }}
+                                        classStyle={Style.button}
+                                    />
+                                ) : (
+                                    <Button
+                                        icon={<FaWallet />}
+                                        btnText="Buy Nft"
+                                        handleClick={() => { buyNft(nft) }}
+                                        classStyle={Style.button}
+                                    />
+                                )
+                            }
+
 
                             <Button
                                 icon={<FaPercentage />}
                                 btnText="Make offer"
-                                handleClick={() => { }}
+                                handleClick={() => { buyNft(nft) }}
                                 classStyle={Style.button}
                             />
 

@@ -3,6 +3,7 @@ import Image from 'next/legacy/image';
 import { BsImage } from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { MdVerified, MdTimer } from 'react-icons/md';
+import Link from 'next/link';
 
 import Style from './NFTCardTwo.module.css';
 import images from '../../img';
@@ -22,45 +23,47 @@ const NFTCardTwo = ({ NFTData }) => {
         <div className={Style.NFTCardTwo}>
             {
                 NFTData.map((item, index) => (
-                    <div className={Style.NFTCardTwo_box} key={index + 1}>
-                        <div className={Style.NFTCardTwo_box_like}>
-                            <div className={Style.NFTCardTwo_box_like_box}>
-                                <div className={Style.NFTCardTwo_box_like_box_box}>
-                                    <BsImage className={Style.NFTCardTwo_box_like_box_box_icon} />
-                                    <p onClick={() => likeNft()}>
-                                        {like ? (<AiFillHeart />) : (<AiOutlineHeart />)}
-                                        {""}
-                                        <span>{likeCount}</span>
-                                    </p>
+                    <Link href={{ pathname: '/NFTDetails', query: item }} key={index}>
+                        <div className={Style.NFTCardTwo_box} key={index + 1}>
+                            <div className={Style.NFTCardTwo_box_like}>
+                                <div className={Style.NFTCardTwo_box_like_box}>
+                                    <div className={Style.NFTCardTwo_box_like_box_box}>
+                                        <BsImage className={Style.NFTCardTwo_box_like_box_box_icon} />
+                                        <p onClick={() => likeNft()}>
+                                            {like ? (<AiFillHeart />) : (<AiOutlineHeart />)}
+                                            {""}
+                                            <span>{likeCount}</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={Style.NFTCardTwo_box_img}>
-                            <Image src={item.image} alt="NFT" width={500} height={500} objectFit="cover" />
+                            <div className={Style.NFTCardTwo_box_img}>
+                                <Image src={item.image} alt="NFT" width={500} height={500} objectFit="cover" />
 
-                        </div>
-
-                        <div className={Style.NFTCardTwo_box_info}>
-                            <div className={Style.NFTCardTwo_box_info_left}>
-                                <LikeProfile />
-                                <p>{item.name}</p>
-                            </div>
-                            <small>4{index + 2}</small>
-                        </div>
-
-                        <div className={Style.NFTCardTwo_box_price}>
-                            <div className={Style.NFTCardTwo_box_price_box}>
-                                <small>Current Bid</small>
-                                <p>{item.price} ETH</p>
                             </div>
 
+                            <div className={Style.NFTCardTwo_box_info}>
+                                <div className={Style.NFTCardTwo_box_info_left}>
+                                    <LikeProfile />
+                                    <p>{item.name}</p>
+                                </div>
+                                <small>4{index + 2}</small>
+                            </div>
 
-                            <p className={Style.NFTCardTwo_box_price_stock}>
-                                <MdTimer /> <span>{index + 1} hours left</span>
-                            </p>
+                            <div className={Style.NFTCardTwo_box_price}>
+                                <div className={Style.NFTCardTwo_box_price_box}>
+                                    <small>Current Bid</small>
+                                    <p>{item.price} ETH</p>
+                                </div>
+
+
+                                <p className={Style.NFTCardTwo_box_price_stock}>
+                                    <MdTimer /> <span>{index + 1} hours left</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 ))
             }
 

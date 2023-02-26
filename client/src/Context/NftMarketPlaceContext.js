@@ -37,7 +37,7 @@ const client = ipfsHttpClient({
 
 
 export const NftMarketPlaceProvider=(({children})=>{
-  const { address:currentAccount, isConnecting, isDisconnected } = useAccount();
+  const { address:currentAccount} = useAccount();
   const { data: signer } = useSigner();
   const provider = useProvider()
 
@@ -269,8 +269,9 @@ const connectWithSmartContract= async ()=>{
         }
       };
 
-      const buyNFT = async (nft) => {
+      const buyNft = async (nft) => {
         try {
+          console.log("**@ buyNft called with nft , ",nft)
           const contract = await connectWithSmartContract();
           const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
     
@@ -279,8 +280,8 @@ const connectWithSmartContract= async ()=>{
           });
     
           await transaction.wait();
-        //   router.push("/author");
-        } catch (error) {
+          router.push("/author");
+        } catch (err) {
           console.log("**@ Error caught While buying NFT , error is , ",err);
         }
       };
@@ -308,7 +309,7 @@ const connectWithSmartContract= async ()=>{
             createSale,
             fetchNfts,
             fetchMyNFTsOrListedNFTs,
-            buyNFT
+            buyNft
         }}>
             {children}
         </NftMarketPlaceContext.Provider>

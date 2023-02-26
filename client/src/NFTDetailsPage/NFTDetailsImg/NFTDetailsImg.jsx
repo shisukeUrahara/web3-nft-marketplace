@@ -7,7 +7,7 @@ import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 import Style from './NFTDetailsImg.module.css';
 import images from '../../img'
 
-const NFTDetailsImg = () => {
+const NFTDetailsImg = ({ nft }) => {
     const [description, setDescription] = useState(true);
     const [details, setDetails] = useState(true);
     const [like, setLike] = useState(false);
@@ -35,7 +35,7 @@ const NFTDetailsImg = () => {
 
                     <div className={Style.NFTDetailsImg_box_NFT_img}>
                         <Image
-                            src={images.nft_image_1}
+                            src={nft.image}
                             alt="NFT Image"
                             className={Style.NFTDetailsImg_box_NFT_img_img}
                             width={700}
@@ -62,9 +62,7 @@ const NFTDetailsImg = () => {
                     description && (
                         <div className={Style.NFTDetailsImg_box_description_box}>
                             <p>
-                                Tattooed Kitty Gang (“TKG”) is a collection of 666 badass kitty gangsters,
-                                with symbol of tattoos, living in the Proud Kitty Gang (“PKG”) metaverse.
-                                Each TKG is an 1/1 ID as gangster member & all the joint rights.
+                                {nft.description}
                             </p>
                         </div>
                     )
@@ -88,11 +86,11 @@ const NFTDetailsImg = () => {
                             <p>
                                 <small>Contract Address</small>
                                 <br />
-                                0xFd40b0823eD5072C0890f2a9f07E3Ec0eF9b4eBa
+                                {nft.seller}
                             </p>
                             <p>
                                 <small>TOKEN ID </small>
-                                {"  "} 102345
+                                {"  "} {nft.tokenId}
                             </p>
 
                         </div>
