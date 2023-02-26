@@ -1,0 +1,23 @@
+
+.reSellNft{
+    width: 100%;
+    margin-block: 4rem;
+}
+
+.reSellNft_box{
+    width: 60%;
+    margin:  0 auto;
+}
+.reSellNft_box h1{
+    font-size: 3rem;
+}
+
+.reSellNft_box_image{
+    margin-block: 4rem;
+}
+
+@media screen and (max-width: 35em) {
+    .reSellNft_box{
+        width: 90%;
+    }
+}
