@@ -229,14 +229,20 @@ const connectWithSmartContract= async ()=>{
 
     const fetchMyNFTsOrListedNFTs = async (type) => {
         try {
+          console.log("**@ fetchMyNFTsOrListedNFTs called with type , ",type);
+          console.log("**@ fetchMyNFTsOrListedNFTs called signer is  , ",signer)
+
           if (currentAccount) {
             const contract = await connectWithSmartContract();
-    
+            console.log("**@ fetchMyNFTsOrListedNFTs called contract is  , ",contract)
+
             const data =
               type == "fetchItemsListed"
                 ? await contract.fetchItemsListed()
                 : await contract.fetchMyNFTs();
-    
+
+            console.log("**@ fetchMyNFTsOrListedNFTs called data is  , ",data)
+
             const items = await Promise.all(
               data.map(
                 async ({ tokenId, seller, owner, price: unformattedPrice }) => {
@@ -262,6 +268,9 @@ const connectWithSmartContract= async ()=>{
                 }
               )
             );
+
+            console.log("**@ fetchMyNFTsOrListedNFTs called items  are  , ",items)
+
             return items;
           }
         } catch (err) {

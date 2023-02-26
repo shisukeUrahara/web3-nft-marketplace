@@ -9,7 +9,7 @@ import Style from './AuthorProfileCard.module.css';
 import images from '../../img';
 import { Button } from '@/components/index';
 
-const AuthorProfileCard = () => {
+const AuthorProfileCard = ({ currentAccount }) => {
     const [option, setOption] = useState('');
 
     const manageOption = (selectedOption) => {
@@ -46,7 +46,7 @@ const AuthorProfileCard = () => {
                     <h2>Danny Jones{" "} <span><MdVerified />{" "}</span></h2>
 
                     <div className={Style.AuthorProfileCard_box_info_address}>
-                        <input type="text" readOnly={true} value="0xF7df43751C27f55A3077557D0579Ef7ebFffc7FC" id="myInput" />
+                        <input type="text" readOnly={true} value={currentAccount} id="myInput" />
 
                         <FiCopy onClick={() => copyAddress()} className={Style.AuthorProfileCard_box_info_address_icon} />
                     </div>
