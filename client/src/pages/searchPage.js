@@ -9,7 +9,7 @@ import images from '../img';
 import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const searchPage = () => {
-  const {fetchNfts,currentAccount}=useNftMarketPlaceContext();
+  const {fetchNfts,currentAccount,setError,setOpenError}=useNftMarketPlaceContext();
   const [showLoader,setShowLoader]=useState(false);
   const [nfts,setNfts]=useState([]);
   const [nftsCopy,setNftsCopy]=useState([]);
@@ -31,6 +31,8 @@ const searchPage = () => {
     } catch (err) {
       console.log("**@ search page , error while fetching nfts , error is ", err);
       setShowLoader(false);
+      setError("Please reload the browser", error);
+      setOpenError(true)
     }
   },[currentAccount]);
 
