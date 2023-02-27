@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { MdNotifications } from 'react-icons/md';
 import { BsSearch } from 'react-icons/bs';
+import { DiJqueryLogo } from "react-icons/di";
 import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Style from './Navbar.module.css';
@@ -16,6 +18,7 @@ const Navbar = () => {
     const [option, setOption] = useState('');
     const [openSidebar, setOpenSidebar] = useState(false);
     const { currentAccount } = useNftMarketPlaceContext();
+    const router = useRouter();
 
     const openMenu = (e) => {
         let selectedOption = e.target.innerText;
@@ -33,13 +36,7 @@ const Navbar = () => {
             <div className={Style.navbar_container}>
                 <div className={Style.navbar_container_left}>
                     <div className={Style.logo}>
-                        <Image
-                            src={images.logo}
-                            alt="Nft-Marketplace"
-                            width={100}
-                            height={100}
-                            objectFit="cover"
-                        />
+                        <DiJqueryLogo onClick={() => router.push("/")} />
                     </div>
 
                     <div className={Style.navbar_container_left_box_input}>

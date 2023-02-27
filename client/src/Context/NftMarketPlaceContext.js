@@ -241,7 +241,7 @@ const connectWithSmartContract= async ()=>{
                 ? await contract.fetchItemsListed()
                 : await contract.fetchMyNFTs();
 
-            console.log("**@ fetchMyNFTsOrListedNFTs called data is  , ",data)
+            console.log(`**@ fetchMyNFTsOrListedNFTs called with type ${type} data is  , `,data)
 
             const items = await Promise.all(
               data.map(
