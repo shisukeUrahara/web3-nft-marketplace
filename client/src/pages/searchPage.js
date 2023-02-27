@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 
 import Style from '../styles/searchPage.module.css';
-import { Slider,Brand } from '../components';
+import { Slider,Brand,Loader } from '../components';
 import { SearchBar } from 'src/searchPage';
 import { Filter } from '../components';
 import { NFTCardTwo,Banner } from 'src/collectionPage';
@@ -10,11 +10,13 @@ import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const searchPage = () => {
   const {fetchNfts,currentAccount}=useNftMarketPlaceContext();
+  const [showLoader,setShowLoader]=useState(false);
   const [nfts,setNfts]=useState([]);
   const [nftsCopy,setNftsCopy]=useState([]);
 
   useEffect(()=>{
     try {
+      setShowLoader(true);
       if (currentAccount) {
         fetchNfts().then((items) => {
           console.log("**@ fetch nft items are , ",items)
@@ -23,10 +25,12 @@ const searchPage = () => {
           setNftsCopy(items);
           console.log(nfts);
          }
+         setShowLoader(false);
         });
       }
     } catch (err) {
       console.log("**@ search page , error while fetching nfts , error is ", err);
+      setShowLoader(false);
     }
   },[currentAccount]);
 
@@ -75,7 +79,7 @@ const searchPage = () => {
       <SearchBar   onHandleSearch={onHandleSearch}
         onClearSearch={onClearSearch}/>
       <Filter />
-      <NFTCardTwo NFTData={nfts} />
+      {nfts.length == 0 ? <Loader /> : <NFTCardTwo NFTData={nfts} />}
       <Slider />
       <Brand />
 
