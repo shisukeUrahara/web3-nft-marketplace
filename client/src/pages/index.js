@@ -24,7 +24,8 @@ export default function Home() {
 
   //  creators list
   const creators=getTopCreators(nfts);
-  console.log("**@ home page creators are , ",creators)
+  console.log("**@ home page creators are , ",creators);
+
 
 
   useEffect(()=>{
@@ -58,7 +59,7 @@ export default function Home() {
         content="Discover the most outstanding NFTs in all topics of life."
       />
     <AudioLive />
-      <FollowerTab TopCreator={creators} />
+      {creators.length==0?<Loader />:<FollowerTab TopCreator={creators} />}
       <Slider />
     <Collection />
     <Title
