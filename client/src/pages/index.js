@@ -11,6 +11,7 @@ import { HeroSection,Service ,BigNftSlider,
     Brand, Video,Loader} from "../components";
 
 import { useNftMarketPlaceContext } from "src/Context/NftMarketPlaceContext";
+import { getTopCreators } from "TopCreators/TopCreators";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,10 @@ export default function Home() {
   const [nfts,setNfts]=useState([]);
   const [nftsCopy,setNftsCopy]=useState([]);
   const { address: currentAccount } = useAccount();
+
+  //  creators list
+  const creators=getTopCreators(nfts);
+  console.log("**@ home page creators are , ",creators)
 
 
   useEffect(()=>{
@@ -53,7 +58,7 @@ export default function Home() {
         content="Discover the most outstanding NFTs in all topics of life."
       />
     <AudioLive />
-      <FollowerTab />
+      <FollowerTab TopCreator={creators} />
       <Slider />
     <Collection />
     <Title

@@ -18,7 +18,7 @@ const FollowerTabCard = ({ item, index }) => {
             <div className={Style.followerTabCard_box}>
                 <div className={Style.followerTabCard_box_img}>
                     <Image
-                        src={item.background}
+                        src={item.background || images[`creatorbackground${index + 1}`]}
                         alt="profile background"
                         width={500}
                         height={300}
@@ -30,7 +30,7 @@ const FollowerTabCard = ({ item, index }) => {
                 <div className={Style.followerTabCard_box_profile}>
                     <Image
                         className={Style.followerTabCard_box_profile_img}
-                        src={item.user}
+                        src={item.user || images[`user${index + 1}`]}
                         alt="profile picture"
                         width={50}
                         height={50}
@@ -41,12 +41,12 @@ const FollowerTabCard = ({ item, index }) => {
 
                 <div className={Style.followerTabCard_box_info}>
                     <div className={Style.followerTabCard_box_info_name}>
-                        <h4>John Davis {" "}
+                        <h4>{item.seller.slice(0, 9)}
                             <span>
                                 <MdVerified />
                             </span>
                         </h4>
-                        <p>1.234 ETH</p>
+                        <p>{item.total} ETH</p>
                     </div>
                     <div className={Style.followerTabCard_box_info_following}>
                         {
