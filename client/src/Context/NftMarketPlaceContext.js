@@ -37,13 +37,11 @@ const client = ipfsHttpClient({
 
 
 export const NftMarketPlaceProvider=(({children})=>{
+  const [error,setError]=useState("");
+  const [openError,setOpenError]=useState(true);
   const { address:currentAccount} = useAccount();
   const { data: signer } = useSigner();
   const provider = useProvider()
-
-
-
-
     const router=useRouter();
 
     //  fetching smart contract
@@ -63,6 +61,8 @@ const connectWithSmartContract= async ()=>{
   }
   catch(err){
       console.log("**@ error caught while connecting with smart contract , error is , ",err);
+      setOpenError(true);
+      setError(err);
   }
 }
 
@@ -85,6 +85,8 @@ const connectWithSmartContract= async ()=>{
         }
         catch(err){
             console.log("**@ connect wallet error is , ",err);
+            setOpenError(true);
+            setError(err);
         }
 
     }
@@ -109,6 +111,8 @@ const connectWithSmartContract= async ()=>{
         }
         catch(err){
             console.log("**@ error caught while uploading to ipfs , error is , ",err);
+            setOpenError(true);
+            setError(err);
         }
     }
 
@@ -141,6 +145,8 @@ const connectWithSmartContract= async ()=>{
                 // router.push("/searchPage");
               } catch (err) {
                 console.log("**@ Error while uploading data to ipfs and creating nft, error is , ",err);
+                setOpenError(true);
+                setError(err);
               }
     }
 
@@ -177,6 +183,8 @@ const connectWithSmartContract= async ()=>{
         }
         catch(err){
             console.log("**@ error caught while creating sale , error is , ",err);
+            setOpenError(true);
+            setError(err);
         }
 
     }
@@ -224,6 +232,8 @@ const connectWithSmartContract= async ()=>{
         }
         catch(err){
             console.log("**@ error caught while catching nfts , error is , ",err);
+            setOpenError(true);
+            setError(err);
         }
     };
 
@@ -275,6 +285,8 @@ const connectWithSmartContract= async ()=>{
           }
         } catch (err) {
           console.log("**@ Error caught  while fetching listed NFTs , error is  , ",err);
+          setOpenError(true);
+          setError(err);
         }
       };
 
@@ -292,6 +304,8 @@ const connectWithSmartContract= async ()=>{
           router.push("/author");
         } catch (err) {
           console.log("**@ Error caught While buying NFT , error is , ",err);
+          setOpenError(true);
+          setError(err);
         }
       };
 
@@ -318,7 +332,11 @@ const connectWithSmartContract= async ()=>{
             createSale,
             fetchNfts,
             fetchMyNFTsOrListedNFTs,
-            buyNft
+            buyNft,
+            error,
+            setError,
+            openError,
+            setOpenError
         }}>
             {children}
         </NftMarketPlaceContext.Provider>

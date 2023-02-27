@@ -10,14 +10,14 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Style from './Navbar.module.css';
 import { Discover, Notifications, HelpCenter, Profile, Sidebar } from './';
 import images from '../../img';
-import { Button } from '..';
+import { Button, Error } from '..';
 import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const Navbar = () => {
     // use states
     const [option, setOption] = useState('');
     const [openSidebar, setOpenSidebar] = useState(false);
-    const { currentAccount } = useNftMarketPlaceContext();
+    const { currentAccount, openError } = useNftMarketPlaceContext();
     const router = useRouter();
 
     const openMenu = (e) => {
@@ -140,6 +140,9 @@ const Navbar = () => {
                     <Sidebar setOpenSideMenu={setOpenSidebar} currentAccount={currentAccount} />
                 </div>
             }
+
+            {openError && <Error />}
+
 
         </div>
     )
