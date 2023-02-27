@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const openMenu = (e) => {
         let selectedOption = e.target.innerText;
-        console.log("**@ openMenu called with option , ", selectedOption);
+        // console.log("**@ openMenu called with option , ", selectedOption);
         if (option === selectedOption) {
             setOption('');
         }

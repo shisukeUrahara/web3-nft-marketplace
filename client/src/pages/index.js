@@ -24,7 +24,7 @@ export default function Home() {
 
   //  creators list
   const creators=getTopCreators(nfts);
-  console.log("**@ home page creators are , ",creators);
+  // console.log("**@ home page creators are , ",creators);
 
 
 
@@ -33,7 +33,7 @@ export default function Home() {
       setShowLoader(true);
       if (currentAccount) {
         fetchNfts().then((items) => {
-          console.log("**@ fetch nft home items are , ",items)
+          // console.log("**@ fetch nft home items are , ",items)
          if(items){
           setNfts(items.reverse());
           setNftsCopy(items);
@@ -43,7 +43,7 @@ export default function Home() {
       }
       setShowLoader(false);
     } catch (err) {
-      console.log("**@ search page , error while fetching nfts , error is ", err);
+      // console.log("**@ search page , error while fetching nfts , error is ", err);
       setShowLoader(false);
     }
   },[currentAccount]);

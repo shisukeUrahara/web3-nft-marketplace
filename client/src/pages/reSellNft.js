@@ -9,7 +9,7 @@ import { Button } from '../components';
 import { useNftMarketPlaceContext } from 'src/Context/NftMarketPlaceContext';
 
 const reSellNft = () => {
-  const {createSale}=useNftMarketPlaceContext();
+  const {createSale,setOpenError,setError}=useNftMarketPlaceContext();
   const [price,setPrice]=useState("");
   const [image,setImage]=useState("");
   const router=useRouter();
@@ -33,7 +33,9 @@ const reSellNft = () => {
       router.push("/author");
       }
       else{
-        console.log("**@ please enter price to resell")
+        setError("please enter price to resell");
+        setOpenError(true)
+        // console.log("**@ please enter price to resell")
       }
     } catch (error) {
       console.log("Error while resell", error);
@@ -45,6 +47,11 @@ const reSellNft = () => {
     <div className={Style.reSellNft}>
       <div className={Style.reSellNft_box}>
         <h1>ReSell Your Token, Set Price</h1>
+        <div className={Style.reSellNft_box_image}>
+          {image && (
+            <Image src={image} alt="resell nft" width={400} height={400} />
+          )}
+        </div>
         <div className={formStyle.Form_box_input}>
           <label htmlFor="name">Price</label>
           <input
@@ -57,11 +64,7 @@ const reSellNft = () => {
           />
         </div>
 
-        <div className={Style.reSellNft_box_image}>
-          {image && (
-            <Image src={image} alt="resell nft" width={400} height={400} />
-          )}
-        </div>
+
 
         <div className={Style.reSellNft_box_btn}>
           <Button btnText="Resell NFT" handleClick={() => resell()} />

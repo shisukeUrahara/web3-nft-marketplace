@@ -19,7 +19,7 @@ const searchPage = () => {
       setShowLoader(true);
       if (currentAccount) {
         fetchNfts().then((items) => {
-          console.log("**@ fetch nft items are , ",items)
+          // console.log("**@ fetch nft items are , ",items)
          if(items){
           setNfts(items.reverse());
           setNftsCopy(items);
@@ -29,7 +29,7 @@ const searchPage = () => {
         });
       }
     } catch (err) {
-      console.log("**@ search page , error while fetching nfts , error is ", err);
+      // console.log("**@ search page , error while fetching nfts , error is ", err);
       setShowLoader(false);
       setError("Please reload the browser", error);
       setOpenError(true)

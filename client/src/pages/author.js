@@ -53,8 +53,8 @@ const followerArray = [
 useEffect(() => {
  if(currentAccount){
   fetchMyNFTsOrListedNFTs("fetchItemsListed").then((items) => {
-    console.log("**@ listed nfts are , ",items);
-    console.log("**@ listed signer is  , ",signer);
+    // console.log("**@ listed nfts are , ",items);
+    // console.log("**@ listed signer is  , ",signer);
     setNfts(items);
   });
  }
@@ -63,8 +63,8 @@ useEffect(() => {
 useEffect(() => {
   if(currentAccount){
     fetchMyNFTsOrListedNFTs("fetchMyNFTs").then((items) => {
-      console.log("**@ my nfts are , ",items);
-      console.log("**@ listed signer2 is  , ",signer);
+      // console.log("**@ my nfts are , ",items);
+      // console.log("**@ listed signer2 is  , ",signer);
 
       setMyNfts(items);
     });

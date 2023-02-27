@@ -15,7 +15,7 @@ const walletConfig = {
   walletEnv: process.env.NEXT_PUBLIC_ENVIRONMENT || "testnet",
 };
 
-console.log("**@ walletConfig is , ",walletConfig);
+// console.log("**@ walletConfig is , ",walletConfig);
 
 if (
   walletConfig.walletEnv &&

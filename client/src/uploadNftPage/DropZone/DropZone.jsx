@@ -23,9 +23,9 @@ const DropZone = ({
 }) => {
     const [fileUrl, setFileUrl] = useState(null);
     const onDrop = useCallback(async (acceptedFile) => {
-        console.log("**@ onDrop called with acceptedFile , ", acceptedFile)
+        // console.log("**@ onDrop called with acceptedFile , ", acceptedFile)
         const url = await uploadToIpfs(acceptedFile[0]);
-        console.log("**@ onDrop called , url is  , ", url)
+        // console.log("**@ onDrop called , url is  , ", url)
 
         setFileUrl(url);
         setImage(url);

@@ -17,7 +17,7 @@ const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
   "base64"
 )}`;
 
-console.log("**@ nftMarketPlace context , projectId is , ",projectId)
+// console.log("**@ nftMarketPlace context , projectId is , ",projectId)
 
 const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
 
@@ -60,7 +60,7 @@ const connectWithSmartContract= async ()=>{
       return contract
   }
   catch(err){
-      console.log("**@ error caught while connecting with smart contract , error is , ",err);
+      // console.log("**@ error caught while connecting with smart contract , error is , ",err);
       setOpenError(true);
       setError(err);
   }
@@ -70,21 +70,21 @@ const connectWithSmartContract= async ()=>{
     const connectWallet= async ()=>{
         try{
             if(!window.ethereum){
-                console.log("**@ connect wallet check , Install metamask");
+                // console.log("**@ connect wallet check , Install metamask");
                 return;
             }
             const accounts= await window.ethereum.request({method:"eth_requestAccounts"});
             if(accounts.length){
-                console.log("**@ connected accounts 2 array is , ",accounts);
+                // console.log("**@ connected accounts 2 array is , ",accounts);
                 setCurrentAccount(accounts[0]);
             }
             else{
-                console.log("**@ No wallet connected accounts found 2")
+                // console.log("**@ No wallet connected accounts found 2")
             }
 
         }
         catch(err){
-            console.log("**@ connect wallet error is , ",err);
+            // console.log("**@ connect wallet error is , ",err);
             setOpenError(true);
             setError(err);
         }
@@ -93,13 +93,8 @@ const connectWithSmartContract= async ()=>{
 
     const uploadToIpfs= async (file)=>{
         try{
-
-          console.log("**@ uploadToIpfs called , project id is , ",projectId)
-          console.log("**@ uploadToIpfs called , project secret is , ",projectSecretKey)
-          console.log("**@ uploadToIpfs called , project subdomain is , ",subdomain)
-
             const fileHash= await client.add({content:file});
-            console.log("**@ uploadToIpfs called fileHash is  , ",fileHash);
+            // console.log("**@ uploadToIpfs called fileHash is  , ",fileHash);
 
             const url=`${subdomain}/ipfs/${fileHash.path}`;
             // const url=`https://ipfs.infura.io/ipfs/${fileHash.cid}`;
@@ -110,33 +105,29 @@ const connectWithSmartContract= async ()=>{
 
         }
         catch(err){
-            console.log("**@ error caught while uploading to ipfs , error is , ",err);
+            // console.log("**@ error caught while uploading to ipfs , error is , ",err);
             setOpenError(true);
             setError(err);
         }
     }
 
     const createNft= async ( name,price,image,description,router)=>{
-      console.log("**@ createNft called with name , ",name);
-      console.log("**@ createNft called with price , ",price);
-      console.log("**@ createNft called with image , ",image);
-      console.log("**@ createNft called with description , ",description);
-
+     
             if(!name || !description || !price || !image){
                 return (setError("Incomplete data provided for creating nft"),setOpenError(true));
             }
 
             const data = JSON.stringify({name,description,image});
-            console.log("**@ stringified data is , ",data)
+            // console.log("**@ stringified data is , ",data)
 
             try {
                 const added = await client.add(data);
-                console.log("**@ added data is , ",added)
+                // console.log("**@ added data is , ",added)
 
                 // const url = `https://infura-ipfs.io/ipfs/${added.path}`;
                 const url=`${subdomain}/ipfs/${added.path}`;
 
-                console.log("**@ url data is , ",url)
+                // console.log("**@ url data is , ",url)
 
 
                 // return url
@@ -144,7 +135,7 @@ const connectWithSmartContract= async ()=>{
                 await createSale(url, price);
                 // router.push("/searchPage");
               } catch (err) {
-                console.log("**@ Error while uploading data to ipfs and creating nft, error is , ",err);
+                // console.log("**@ Error while uploading data to ipfs and creating nft, error is , ",err);
                 setOpenError(true);
                 setError(err);
               }
@@ -152,20 +143,15 @@ const connectWithSmartContract= async ()=>{
 
     const createSale= async (url,price,isReselling,id)=>{
         try{
-          console.log("**@ createSale called with url , ",url);
-          console.log("**@ createSale called with price , ",price);
-          console.log("**@ createSale called with isReselling , ",isReselling);
-          console.log("**@ createSale called with id , ",id);
-          console.log("**@ ethers is  , ",ethers);
-          console.log("**@ utils is , , ",ethers.utils);
+         
 
             const etherPrice= ethers.utils.parseUnits(price,18);
-            console.log("**@ etherPrice is , ",etherPrice);
+            // console.log("**@ etherPrice is , ",etherPrice);
             const contract = await connectWithSmartContract();
-            console.log("**@ contract is , ",contract);
+            // console.log("**@ contract is , ",contract);
 
             const listingPrice= await contract.getListingPrice();
-            console.log("**@ listingPrice is , ",listingPrice);
+            // console.log("**@ listingPrice is , ",listingPrice);
 
             const transaction = !isReselling
             ? await contract.createNft(url, etherPrice, {
@@ -176,13 +162,13 @@ const connectWithSmartContract= async ()=>{
               });
     
           await transaction.wait();
-          console.log("**@ create sale tx is , ",transaction);
+          // console.log("**@ create sale tx is , ",transaction);
           router.push("/searchPage")
 
 
         }
         catch(err){
-            console.log("**@ error caught while creating sale , error is , ",err);
+            // console.log("**@ error caught while creating sale , error is , ",err);
             setOpenError(true);
             setError(err);
         }
@@ -192,12 +178,12 @@ const connectWithSmartContract= async ()=>{
     const fetchNfts= async ()=>{
         try{
             // const provider= new ethers.providers.JsonRpcProvider();
-            console.log("**@ nft provider is , ",provider);
+            // console.log("**@ nft provider is , ",provider);
 
             const contract= fetchContract(provider);
-            console.log("**@ nft contract is , ",contract);
+            // console.log("**@ nft contract is , ",contract);
             const data= await contract.fetchMarketItems();
-            console.log("**@ nft data is , ",data);
+            // console.log("**@ nft data is , ",data);
 
             const items = await Promise.all(
                 data.map(
@@ -226,12 +212,12 @@ const connectWithSmartContract= async ()=>{
                 )
               );
       
-              console.log("**@ NFT fetched items are , ",items);
+              // console.log("**@ NFT fetched items are , ",items);
               return items;
 
         }
         catch(err){
-            console.log("**@ error caught while catching nfts , error is , ",err);
+            // console.log("**@ error caught while catching nfts , error is , ",err);
             setOpenError(true);
             setError(err);
         }
@@ -239,19 +225,19 @@ const connectWithSmartContract= async ()=>{
 
     const fetchMyNFTsOrListedNFTs = async (type) => {
         try {
-          console.log("**@ fetchMyNFTsOrListedNFTs called with type , ",type);
-          console.log("**@ fetchMyNFTsOrListedNFTs called signer is  , ",signer)
+          // console.log("**@ fetchMyNFTsOrListedNFTs called with type , ",type);
+          // console.log("**@ fetchMyNFTsOrListedNFTs called signer is  , ",signer)
 
           if (currentAccount) {
             const contract = await connectWithSmartContract();
-            console.log("**@ fetchMyNFTsOrListedNFTs called contract is  , ",contract)
+            // console.log("**@ fetchMyNFTsOrListedNFTs called contract is  , ",contract)
 
             const data =
               type == "fetchItemsListed"
                 ? await contract.fetchItemsListed()
                 : await contract.fetchMyNFTs();
 
-            console.log(`**@ fetchMyNFTsOrListedNFTs called with type ${type} data is  , `,data)
+            // console.log(`**@ fetchMyNFTsOrListedNFTs called with type ${type} data is  , `,data)
 
             const items = await Promise.all(
               data.map(
@@ -279,12 +265,12 @@ const connectWithSmartContract= async ()=>{
               )
             );
 
-            console.log("**@ fetchMyNFTsOrListedNFTs called items  are  , ",items)
+            // console.log("**@ fetchMyNFTsOrListedNFTs called items  are  , ",items)
 
             return items;
           }
         } catch (err) {
-          console.log("**@ Error caught  while fetching listed NFTs , error is  , ",err);
+          // console.log("**@ Error caught  while fetching listed NFTs , error is  , ",err);
           setOpenError(true);
           setError(err);
         }
@@ -292,7 +278,7 @@ const connectWithSmartContract= async ()=>{
 
       const buyNft = async (nft) => {
         try {
-          console.log("**@ buyNft called with nft , ",nft)
+          // console.log("**@ buyNft called with nft , ",nft)
           const contract = await connectWithSmartContract();
           const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
     
@@ -303,7 +289,7 @@ const connectWithSmartContract= async ()=>{
           await transaction.wait();
           router.push("/author");
         } catch (err) {
-          console.log("**@ Error caught While buying NFT , error is , ",err);
+          // console.log("**@ Error caught While buying NFT , error is , ",err);
           setOpenError(true);
           setError(err);
         }
