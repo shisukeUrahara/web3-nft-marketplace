@@ -114,7 +114,7 @@ const NFTDescription = ({ nft }) => {
                 </div>
 
                 <div className={Style.NFTDescription_box_profile}>
-                    <h1>{nft.name} #{nft.tokenId}</h1>
+                    <h1>{nft?.name} #{nft?.tokenId}</h1>
                     <div className={Style.NFTDescription_box_profile_box}>
                         <div className={Style.NFTDescription_box_profile_box_left}>
                             <Image
@@ -127,7 +127,7 @@ const NFTDescription = ({ nft }) => {
 
                             <div className={Style.NFTDescription_box_profile_box_left_info}>
                                 <small>Creator</small> <br />
-                                <Link href={{ pathname: '/author', query: `${nft.seller}` }}>
+                                <Link href={{ pathname: '/author', query: `${nft?.seller}` }}>
                                     <span> Karli Costa <MdVerified /> </span>
                                 </Link>
                             </div>
@@ -184,7 +184,7 @@ const NFTDescription = ({ nft }) => {
                         <div className={Style.NFTDescription_box_profile_bidding_box_price}>
                             <div className={Style.NFTDescription_box_profile_bidding_box_price_bid}>
                                 <small>Current Bid</small>
-                                <p>{nft.price} ETH <span>(( ≈ $ 3,221.21))</span></p>
+                                <p>{nft?.price} ETH <span>(( ≈ $ 3,221.21))</span></p>
 
                             </div>
 
@@ -194,15 +194,15 @@ const NFTDescription = ({ nft }) => {
 
                         <div className={Style.NFTDescription_box_profile_bidding_box_button}>
                             {
-                                currentAccount?.toLowerCase() === nft.seller.toLowerCase() ? (
+                                currentAccount?.toLowerCase() === nft?.seller.toLowerCase() ? (
                                     <p>
                                         You cannot buy your own nft
                                     </p>
-                                ) : currentAccount?.toLowerCase() === nft.owner.toLowerCase() ? (
+                                ) : currentAccount?.toLowerCase() === nft?.owner.toLowerCase() ? (
                                     <Button
                                         icon={<FaWallet />}
                                         btnText="List on marketPlace"
-                                        handleClick={() => { router.push(`/reSellNft?id=${nft.tokenId}&tokenURI=${nft.tokenURI}&price=${nft.price}`) }}
+                                        handleClick={() => { router.push(`/reSellNft?id=${nft?.tokenId}&tokenURI=${nft?.tokenURI}&price=${nft?.price}`) }}
                                         classStyle={Style.button}
                                     />
                                 ) : (
