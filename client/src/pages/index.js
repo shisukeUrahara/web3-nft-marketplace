@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
+import { useAccount } from "wagmi";
 import Style from '../styles/index.module.css';
 import { HeroSection,Service ,BigNftSlider,
   Subscribe,Title, Category, 
@@ -14,11 +15,28 @@ import { useNftMarketPlaceContext } from "src/Context/NftMarketPlaceContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {}=useNftMarketPlaceContext();
+  const {fetchNfts}=useNftMarketPlaceContext();
+  const [nfts,setNfts]=useState([]);
+  const [nftsCopy,setNftsCopy]=useState([]);
+  const { address: currentAccount } = useAccount();
+
 
   useEffect(()=>{
-
-  },[]);
+    try {
+      if (currentAccount) {
+        fetchNfts().then((items) => {
+          console.log("**@ fetch nft home items are , ",items)
+         if(items){
+          setNfts(items.reverse());
+          setNftsCopy(items);
+          console.log(nfts);
+         }
+        });
+      }
+    } catch (err) {
+      console.log("**@ search page , error while fetching nfts , error is ", err);
+    }
+  },[currentAccount]);
 
 
   return (
@@ -32,10 +50,6 @@ export default function Home() {
       />
     <AudioLive />
       <FollowerTab />
-      {/* <Title
-        heading="Explore NFTs Video"
-        content="Click on play icon and enjoy NFTs video"
-      /> */}
       <Slider />
     <Collection />
     <Title
@@ -43,7 +57,7 @@ export default function Home() {
         content="Discover the most outstanding NFTs in all topics of life."
       />
     <Filter />
-    <NFTCard />
+    <NFTCard NFTData={nfts} />
     <Title
         heading="Browse by category"
         content="Explore the NFTs in the most featured categories."

@@ -6,29 +6,29 @@ import Image from 'next/legacy/image';
 import Style from './NFTCard.module.css';
 import images from '../../img'
 
-const NFTCard = () => {
-    const CardArray = [
-        images.nft_image_1,
-        images.nft_image_2,
-        images.nft_image_3,
-        images.nft_image_1,
-        images.nft_image_2,
-        images.nft_image_3,
-        images.nft_image_1,
-        images.nft_image_2,
-        images.nft_image_3,
-    ];
+const NFTCard = ({ NFTData }) => {
+    // const CardArray = [
+    //     images.nft_image_1,
+    //     images.nft_image_2,
+    //     images.nft_image_3,
+    //     images.nft_image_1,
+    //     images.nft_image_2,
+    //     images.nft_image_3,
+    //     images.nft_image_1,
+    //     images.nft_image_2,
+    //     images.nft_image_3,
+    // ];
 
     const [like, setLike] = useState(false);
 
     return (
         <div className={Style.NFTCard}>
             {
-                CardArray.map((item, index) => (
+                NFTData.map((item, index) => (
                     <div className={Style.NFTCard_box} key={index + 1}>
                         <div className={Style.NFTCard_box_img}>
                             <Image
-                                src={item}
+                                src={item.image}
                                 alt="NFT Images"
                                 height={600}
                                 width={600}
@@ -62,12 +62,12 @@ const NFTCard = () => {
                         <div className={Style.NFTCard_box_update_details}>
                             <div className={Style.NFTCard_box_update_details_price}>
                                 <div className={Style.NFTCard_box_update_details_price_box}>
-                                    <h4>Clone No. #132234</h4>
+                                    <h4>{item.name} #{item.tokenId}</h4>
 
                                     <div className={Style.NFTCard_box_update_details_price_box_box}>
                                         <div className={Style.NFTCard_box_update_details_price_box_bid}>
                                             <small>Current Bid</small>
-                                            <p>1.000 ETH</p>
+                                            <p>{item.price}ETH</p>
                                         </div>
 
                                         <div className={Style.NFTCard_box_update_details_price_box_stock}>
