@@ -8,7 +8,7 @@ import { HeroSection,Service ,BigNftSlider,
   Subscribe,Title, Category, 
   Filter, NFTCard, Collection,
    FollowerTab ,AudioLive, Slider,
-    Brand, Video} from "../components";
+    Brand, Video,Loader} from "../components";
 
 import { useNftMarketPlaceContext } from "src/Context/NftMarketPlaceContext";
 
@@ -16,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const {fetchNfts}=useNftMarketPlaceContext();
+  const [showLoader,setShowLoader]=useState(false);
   const [nfts,setNfts]=useState([]);
   const [nftsCopy,setNftsCopy]=useState([]);
   const { address: currentAccount } = useAccount();
@@ -23,6 +24,7 @@ export default function Home() {
 
   useEffect(()=>{
     try {
+      setShowLoader(true);
       if (currentAccount) {
         fetchNfts().then((items) => {
           console.log("**@ fetch nft home items are , ",items)
@@ -33,8 +35,10 @@ export default function Home() {
          }
         });
       }
+      setShowLoader(false);
     } catch (err) {
       console.log("**@ search page , error while fetching nfts , error is ", err);
+      setShowLoader(false);
     }
   },[currentAccount]);
 
@@ -57,7 +61,8 @@ export default function Home() {
         content="Discover the most outstanding NFTs in all topics of life."
       />
     <Filter />
-    <NFTCard NFTData={nfts} />
+    {showLoader?<Loader />:<NFTCard NFTData={nfts} />}
+    
     <Title
         heading="Browse by category"
         content="Explore the NFTs in the most featured categories."
