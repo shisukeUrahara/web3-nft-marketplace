@@ -38,7 +38,7 @@ const client = ipfsHttpClient({
 
 export const NftMarketPlaceProvider=(({children})=>{
   const [error,setError]=useState("");
-  const [openError,setOpenError]=useState(true);
+  const [openError,setOpenError]=useState(false);
   const { address:currentAccount} = useAccount();
   const { data: signer } = useSigner();
   const provider = useProvider()
@@ -123,7 +123,7 @@ const connectWithSmartContract= async ()=>{
       console.log("**@ createNft called with description , ",description);
 
             if(!name || !description || !price || !image){
-                return console.log("**@ Incomplete data provider for creating nft");
+                return (setError("Incomplete data provided for creating nft"),setOpenError(true));
             }
 
             const data = JSON.stringify({name,description,image});

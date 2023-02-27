@@ -21,8 +21,7 @@ const Error = () => {
                         objectFit="cover"
                         className={Style.Error_box_info_img}
                     />
-                    {/* <p>{error}</p> */}
-                    <p>Error</p>
+                    <p>{error}</p>
                 </div>
             </div>
         </div>)
